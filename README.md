@@ -12,6 +12,12 @@ Developed for the [Course Name] course, applying User-Centred Design practices, 
 
 ---
 
+## Names of Contributors
+
+- Hi! my name is Derek, I am excited to see this project out to its completion 
+
+---
+
 ## Features
 
 Example:
