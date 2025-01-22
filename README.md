@@ -12,12 +12,6 @@ Developed for the [Course Name] course, applying User-Centred Design practices, 
 
 ---
 
-## Names of Contributors
-
-- Hi! my name is Derek, I am excited to see this project out to its completion 
-
----
-
 ## Features
 
 Example:
@@ -64,6 +58,7 @@ project-name/
 ---
 
 ## Contributors
+- **Derek Cao** - BCIT CST Student with a passion for creating user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
 - **Woojin S** - BCIT CST Student with a passion for creating user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
 - **Derek and Tracy** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
