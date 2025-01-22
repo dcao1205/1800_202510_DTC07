@@ -12,6 +12,12 @@ Developed for the [Course Name] course, applying User-Centred Design practices, 
 
 ---
 
+## Names of Contributors
+
+
+
+---
+
 ## Features
 
 Example:
