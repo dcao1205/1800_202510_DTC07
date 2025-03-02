@@ -12,3 +12,23 @@
     border-color: grey;
     color: grey;
   }
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-content {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.notification-details {
+    display: none;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
