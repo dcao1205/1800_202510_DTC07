@@ -27,7 +27,6 @@
         rel="stylesheet">
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-
 </head>
 
 <body>
@@ -64,44 +63,63 @@
             </div>
 
             <!-- Search Form -->
-            <form class="d-flex" role="search" action="listings.html">
+            <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-
+        
     </nav>
 
-    <!-- welcome banner&call to action -->
-    <div class="px-2 pt-2 mb-5 text-center border-bottom flex flex-col">
-
-        <nav id="profile page" class="d-flex p-3 rounded-3 align-items-center w-auto gap-3" style="background-color: #727980;">
-            <h4 class="text-nowrap">account name</h4>
-            <div id="profile sections" class="d-flex justify-content-around w-auto">
-                <button type="button" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Info</button>
-                <button type="button" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Messages</button>
-                <button type="button" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Active Listings</button>
-                <button type="button" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Saved Textbooks</button>
+    <div class="container mt-4">
+        <h2 class="text-center">Create Listing</h2>
+        <form>
+            <div class="mb-3 text-center">
+                <label for="imageUpload" class="image-upload" id="imagePreview">
+                    <span>Upload Image</span>
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" class="d-none">
             </div>
-
-        </nav>
-
-        <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome {Account Name}</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">You have no new messages.</p>
-            <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3" fdprocessedid="">Support</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4"
-                    fdprocessedid="itmq9n">Logout</button>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" required>
             </div>
-        </div>
-        <!-- <div class="overflow-hidden m-3 flex " style="max-height: 30vh;">
-            <div class="container px-5 m-3">
-                <img src="images\textbook.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image"
-                    width="353" height="350" loading="lazy">
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" required>
             </div>
-        </div> -->
+            <div class="mb-3">
+                <label for="price" class="form-label">Price ($)</label>
+                <input type="number" class="form-control" id="price" required>
+            </div>
+            <div class="mb-3">
+                <label for="quality" class="form-label">Quality</label>
+                <select class="form-control" id="quality">
+                    <option>New</option>
+                    <option>Like New</option>
+                    <option>Used</option>
+                    <option>Worn</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description (Optional)</label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-submit">Submit Listing</button>
+        </form>
     </div>
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
     <div class="my-0">
 
@@ -157,44 +175,6 @@
 
     </div>
 
-    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Notification 1: Placeholder
-                            <button class="btn btn-sm btn-outline-info">More Info</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Notification 2: Placeholder
-                            <button class="btn btn-sm btn-outline-info">More Info</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Notification 3: Placeholder
-                            <button class="btn btn-sm btn-outline-info">More Info</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        document.getElementById("notification-bell").addEventListener("click", function () {
-            var notificationModal = new bootstrap.Modal(document.getElementById("notificationModal"));
-            notificationModal.show();
-        });
-        document.getElementById("create-listing").addEventListener("click", function() {
-            window.location.href = "create_listing.html";
-        });
-    </script>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->

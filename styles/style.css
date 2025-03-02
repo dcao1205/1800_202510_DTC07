@@ -32,3 +32,23 @@
     border-radius: 4px;
     font-size: 0.9em;
 }
+
+.image-upload {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.image-upload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.btn-submit {
+    margin-bottom: 40px;
+}
