@@ -32,20 +32,21 @@
             background-color: grey !important;
             border-color: grey !important;
         }
+
         .divider {
             display: flex;
             align-items: center;
             text-align: center;
             margin: 15px 0;
         }
-        
+
         .divider::before,
         .divider::after {
             content: '';
             flex: 1;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .divider span {
             padding: 0 10px;
             color: #757575;
@@ -71,12 +72,18 @@
 
         <!-- Collapsible Menu -->
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Messages</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-disabled="true">Report</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-disabled="true">Support</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signup.html">Sign Up</a>
+                    <a class="nav-link active" href="#" id="logoutBtn">Log out</a>
                 </li>
             </ul>
         </div>
