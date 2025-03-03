@@ -88,9 +88,9 @@
                 Join us in creating a better way for students to connect, save money, and make the most of their
                 textbooks!</p>
             <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3" fdprocessedid="">Sign
+                <button type="button" id="signup" class="btn btn-outline-secondary btn-lg px-4 mx-3" fdprocessedid="">Sign
                     up</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4"
+                <button type="button" id="login" class="btn btn-outline-secondary btn-lg px-4"
                     fdprocessedid="itmq9n">Login</button>
             </div>
         </div>
@@ -162,6 +162,14 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
+     <script>
+        document.getElementById("signup").addEventListener("click", function () {
+            window.location.href = "signup.html";
+        });
+        document.getElementById("login").addEventListener("click", function () {
+            window.location.href = "signin.html";
+        });
+     </script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
