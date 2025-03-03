@@ -47,19 +47,25 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <!-- Navbar Brand (Right side on small screens) -->
             <a class="navbar-brand ms-auto order-2 navTitle" href="index.html">TextLibre</a>
         </div>
-    
+
         <!-- Collapsible Menu -->
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Messages</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-disabled="true">Report</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-disabled="true">Support</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signin.html">Log in</a>
+                    <a class="nav-link active" href="#" id="logoutBtn">Log out</a>
                 </li>
             </ul>
         </div>
