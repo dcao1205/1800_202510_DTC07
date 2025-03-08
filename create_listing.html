@@ -20,6 +20,11 @@
     <!-- Latest compiled and minified JavaScript -->
 
     <!-- Other libraries go here -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -73,7 +78,8 @@
 
     <div class="container mt-4">
         <h2 class="text-center">Create Listing</h2>
-        <form>
+
+        <form class="create">
             <div class="mb-3 text-center">
                 <label for="imageUpload" class="image-upload" id="imagePreview">
                     <span>Upload Image</span>
@@ -181,7 +187,8 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script type="module" src="./scripts/store_listing.js"></script>
+    <!-- <script type="module" src="./scripts/test.js"></script> -->
 
 </body>
 
