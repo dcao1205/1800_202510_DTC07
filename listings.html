@@ -20,6 +20,10 @@
     <!-- Latest compiled and minified JavaScript -->
 
     <!-- Other libraries go here -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -69,7 +73,7 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-        
+
     </nav>
 
     <!-- welcome banner&call to action -->
@@ -95,62 +99,22 @@
 
     <div class="container my-5">
         <h2 class="text-center mb-4">Search Results</h2>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 1</h5>
-                        <p class="card-text">$50</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                            Contact Seller
-                        </button>
+        <div id="listings-go-here" class="row row-cols-1 row-cols-md-2 g-4">
+            <template id="bookCardTemplate">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Book 1</h5>
+                            <p class="card-price">$50</p>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                            <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                                Contact Seller
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 2</h5>
-                        <p class="card-text">$60</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                            Contact Seller
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 3</h5>
-                        <p class="card-text">$45</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                            Contact Seller
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 4</h5>
-                        <p class="card-text">$55</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                            Contact Seller
-                        </button>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
     </div>
 
@@ -214,12 +178,12 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-     <script>
-        document.getElementById("create-listing").addEventListener("click", function() {
+    <script>
+        document.getElementById("create-listing").addEventListener("click", function () {
             window.location.href = "create_listing.html";
         });
-     </script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    </script>
+    <script type="module" src="./scripts/get_listing.js"></script>
 
 </body>
 
