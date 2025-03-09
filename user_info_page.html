@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+    <!-- Optional theme -->
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <!-- Other libraries go here -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <!-- Hamburger Menu Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Brand -->
+            <span class="navbar-brand navTitle fs-1">TextLibre</span>
+
+            <!-- Collapsible Menu -->
+            <div class="collapse navbar-collapse fs-3" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Report</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Search Form -->
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="text-center">Personal Profile</h2>
+        <div class="card p-4 ">
+            <div class="text-center mb-3">
+                <img id="profileImage" src="" class="rounded-circle border border-secondary p-1" width="120" height="120" style="background-color: #f0f0f0;">
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Username:</strong> <span id="username"></span></li>
+                <li class="list-group-item"><strong>Name:</strong> <span id="name"></span></li>
+                <li class="list-group-item"><strong>Email:</strong> <span id="email"></span></li>
+                <li class="list-group-item"><strong>Phone Number:</strong> <span id="phonenumber"></span></li>
+                <li class="list-group-item"><strong>Location:</strong> <span id="location"></span></li>
+                <li class="list-group-item"><strong>Institution:</strong> <span id="institution"></span></li>
+                <li class="list-group-item"><strong>About Me:</strong> <span id="aboutme"></span></li>
+            </ul>
+        </div>
+    
+        <h3 class="text-center mt-4">My Listings</h3>
+        <div id="userListings" class="row">
+            <!-- Listings will be displayed here -->
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Book 1</h5>
+                        <p class="card-text">$50</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Book 2</h5>
+                        <p class="card-text">$60</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Book 3</h5>
+                        <p class="card-text">$45</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Book 4</h5>
+                        <p class="card-text">$55</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-0">
+
+        <section class="">
+            <!-- Footer -->
+            <footer class="text-center text-white" style="background-color: #727980;">
+                <!-- Grid container -->
+                <div class="container p-3 pb-0">
+                    <!-- Section: CTA -->
+                    <section class="d-flex justify-content-between">
+                        <div id="home" class="d-flex flex-column align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
+                                class="bi bi-house-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
+                                <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
+                            </svg>
+                            <p>Home</p>
+                        </div>
+                        <div id="create-listing" class="d-flex flex-column align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="34"
+                                height="34" stroke-width="2">
+                                <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
+                                <path d="M3 10h18"></path>
+                                <path d="M10 3v18"></path>
+                                <path d="M16 19h6"></path>
+                                <path d="M19 16v6"></path>
+                            </svg>
+                            <p>Add</p>
+                        </div>
+                        <div id="notification-bell" class="d-flex flex-column align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
+                                class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                            </svg>
+                            <p>Alerts</p>
+                        </div>
+                    </section>
+                    <!-- Section: CTA -->
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2025 Copyright: TextLibre
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
+        </section>
+
+    </div>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./scripts/fbsignin.js"></script>
+    <script type="module" src="./scripts/store_personal_info.js"></script>
+    <!-- <script type="module" src="./scripts/test.js"></script> -->
+
+</body>
+
+</html>
