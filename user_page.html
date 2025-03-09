@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Personal Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Personal Profile</h2>
+        <div class="card p-4 shadow">
+            <div class="text-center mb-3">
+                <img id="profileImage" src="default-avatar.png" class="rounded-circle" width="120" height="120">
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Username:</strong> <span id="username"></span></li>
+                <li class="list-group-item"><strong>Name:</strong> <span id="name"></span></li>
+                <li class="list-group-item"><strong>Email:</strong> <span id="email"></span></li>
+                <li class="list-group-item"><strong>Phone Number:</strong> <span id="phonenumber"></span></li>
+                <li class="list-group-item"><strong>Location:</strong> <span id="location"></span></li>
+                <li class="list-group-item"><strong>Institution:</strong> <span id="institution"></span></li>
+                <li class="list-group-item"><strong>About Me:</strong> <span id="aboutme"></span></li>
+            </ul>
+        </div>
+
+        <h3 class="text-center mt-4">My Listings</h3>
+        <div id="userListings" class="row">
+            <!-- Listings will be displayed here -->
+        </div>
+    </div>
+
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js";
+        import { getFirestore, collection, query, where, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js";
+        import { firebaseConfig } from "./firebase_cred.js";
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'signin.html?redirect=personal_info.html';
+                return;
+            }
+
+            const userRef = doc(db, 'users', user.uid);
+            const userSnap = await getDoc(userRef);
+            if (userSnap.exists()) {
+                const userData = userSnap.data();
+                document.getElementById('username').textContent = userData.username || 'N/A';
+                document.getElementById('name').textContent = userData.name || 'N/A';
+                document.getElementById('email').textContent = userData.email || 'N/A';
+                document.getElementById('phonenumber').textContent = userData.phonenumber || 'N/A';
+                document.getElementById('location').textContent = userData.location || 'N/A';
+                document.getElementById('institution').textContent = userData.institution || 'N/A';
+                document.getElementById('aboutme').textContent = userData.aboutme || 'N/A';
+            }
+
+            // Fetch user listings
+            const listingsRef = collection(db, "listings");
+            const q = query(listingsRef, where("userId", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+            const listingsContainer = document.getElementById('userListings');
+
+            querySnapshot.forEach((doc) => {
+                const listing = doc.data();
+                const listingCard = `
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">${listing.title}</h5>
+                                <p class="card-text">${listing.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listingsContainer.innerHTML += listingCard;
+            });
+        });
+    </script>
+</body>
+
+</html>
