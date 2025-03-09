@@ -26,43 +26,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Hamburger Menu Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navbar Brand -->
-            <span class="navbar-brand navTitle fs-1">TextLibre</span>
-
-            <!-- Collapsible Menu -->
-            <div class="collapse navbar-collapse fs-3" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-disabled="true">Report</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-disabled="true">Support</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Log in</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Search Form -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-
-    </nav>
+    <nav id="loggedout-header-container"></nav>
 
     <!-- welcome banner&call to action -->
     <div class="px-4 pt-5 my-5 text-center border-bottom flex flex-col">
@@ -93,74 +57,18 @@
     </div>
 
     <!-- Footer -->
-    <div class="my-0 w-100">
-        <section class="">
-            <footer class="text-center text-white" style="background-color: #727980;">
-                <nav class="container p-3 pb-0">
-                    <section class="d-flex justify-content-between">
-                        <!-- Home (Welcome banner) button -->
-                        <div id="home" class="d-flex flex-column align-items-center">
-                            <button id="btn-home" type="button" style="padding:0; border:none; background: none;"
-                                class="text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
-                                    class="bi bi-house-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
-                                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
-                                </svg>
-                            </button>
-                            <p>Home</p>
-                        </div>
-                        <!-- Sign Up button -->
-                        <div id="signup" class="d-flex flex-column align-items-center">
-                            <button id="btn-signup" type="button" style="padding:0; border:none; background: none;"
-                                class="text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                    <path d="M16 19h6" />
-                                    <path d="M19 16v6" />
-                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
-                                </svg>
-                            </button>
-                            <p>Sign up</p>
-                        </div>
-                        <!-- Login (sign in page) button -->
-                        <div id="login" class="d-flex flex-column align-items-center">
-                            <button id="btn-login" type="button" style="padding:0; border:none; background: none;"
-                                class="text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                    <path d="M21 12h-13l3 -3" />
-                                    <path d="M11 15l-3 -3" />
-                                </svg>
-                            </button>
-                            <p>Login</p>
-                        </div>
-                    </section>
-                </nav>
-                <!-- Copyright -->
-                <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2025 Copyright: TextLibre
-                </div>
-            </footer>
-        </section>
-
-    </div>
+    <div id="loggedout-footer-container"></div>
 
     <!-- Link to scripts of your own -->
-    <script>
+    <!-- <script>
         document.getElementById("signup").addEventListener("click", function () {
             window.location.href = "signup.html";
         });
         document.getElementById("login").addEventListener("click", function () {
             window.location.href = "signin.html";
         });
-    </script>
+    </script> -->
+    <script src="./scripts/logged_out_header.js"></script>
     <script src="./scripts/logged_out_footer.js"></script>
 
 </body>
