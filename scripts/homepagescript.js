@@ -35,23 +35,12 @@ function logoutUser() {
         });
 }
 
-logoutBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    logoutUser();
-});
+// logoutBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     logoutUser();
+// });
 
 logoutBtnLarge.addEventListener("click", (e) => {
     e.preventDefault();
     logoutUser();
-});
-
-// Notification modal handler
-document.getElementById("notification-bell").addEventListener("click", function () {
-    var notificationModal = new bootstrap.Modal(document.getElementById("notificationModal"));
-    notificationModal.show();
-});
-
-// Create listing handler
-document.getElementById("create-listing").addEventListener("click", function () {
-    window.location.href = "create_listing.html";
 });
