@@ -1,63 +1,72 @@
-import { db } from './firebase_cred.js';
+import { auth, db } from './firebase_cred.js';
 
-// Select the form element
-const form = document.querySelector('.create');
+// Ensure script runs only after the DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector('.create');
 
-if (form) {
-  console.log("Form found");
+  if (!form) {
+    console.error("❌ Form with class 'create' not found.");
+    return;
+  }
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    console.log("Submitting form...");
+  console.log("✅ Form found");
 
-    const submitButton = document.querySelector('.btn-submit');
-    const originalButtonText = submitButton.innerHTML;
-    submitButton.innerHTML = 'Saving...';
-    submitButton.disabled = true;
+  // Check if the user is authenticated BEFORE allowing them to update
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      console.error("❌ No authenticated user found.");
+      alert("You need to be logged in to edit your profile.");
+      window.location.href = "signin.html";
+    } else {
+      console.log("✅ User detected:", user.uid);
 
-    try {
-      console.log("Creating profile...");
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        console.log("🟢 Submitting form...");
 
-      const username = document.getElementById('username').value;
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phonenumber = document.getElementById('phonenumber').value;
-      const location = document.getElementById('location').value;
-      const institution = document.getElementById('institution').value;
-      const aboutme = document.getElementById('aboutme').value;
+        const submitButton = document.querySelector('.btn-submit');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = 'Saving...';
+        submitButton.disabled = true;
 
-      const userProfile = {
-        username,
-        name,
-        email,
-        phonenumber,
-        location,
-        institution,
-        aboutme,
-        createdAt: new Date()
-      };
+        try {
+          // Get user input values
+          const username = document.getElementById('username').value.trim();
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phonenumber = document.getElementById('phonenumber').value.trim();
+          const location = document.getElementById('location').value.trim();
+          const institution = document.getElementById('institution').value.trim();
+          const aboutme = document.getElementById('aboutme').value.trim();
 
-      // Add new document to Firestore
-      db.collection('users').add(userProfile)
-        .then(() => {
-          alert('Profile created successfully!');
+          const userProfile = {
+            username,
+            name,
+            email,
+            phonenumber,
+            location,
+            institution,
+            aboutme,
+            updatedAt: new Date()
+          };
+
+          // Update user profile in Firestore
+          await db.collection('users').doc(user.uid).set(userProfile, { merge: true });
+
+          alert("✅ Profile updated successfully!");
           form.reset();
-        })
-        .catch((error) => {
-          console.error('Error creating profile:', error);
-          alert('Error creating profile: ' + error.message);
-        })
-        .finally(() => {
+
+          // Redirect to homepage after updating profile
+          window.location.href = "homepage2.html";
+
+        } catch (error) {
+          console.error("❌ Error updating profile:", error);
+          alert("Error updating profile: " + error.message);
+        } finally {
           submitButton.innerHTML = originalButtonText;
           submitButton.disabled = false;
-        });
-    } catch (error) {
-      console.error('Error in submission process:', error);
-      alert('Error in submission process: ' + error.message);
-      submitButton.innerHTML = originalButtonText;
-      submitButton.disabled = false;
+        }
+      });
     }
   });
-} else {
-  console.error("Form with class 'create' not found");
-}
+});
