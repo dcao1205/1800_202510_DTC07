@@ -13,11 +13,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Boostrap Library JS CDN  go here -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-
-    <!-- Optional theme -->
-
-    <!-- Latest compiled and minified JavaScript -->
 
     <!-- Other libraries go here -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -35,11 +30,6 @@
 </head>
 
 <body>
-
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -73,7 +63,7 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-        
+
     </nav>
 
     <div class="container mt-4">
@@ -115,11 +105,11 @@
         </form>
     </div>
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function(event) {
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
                 };
                 reader.readAsDataURL(file);
@@ -127,67 +117,68 @@
         });
     </script>
 
+    <!-- Footer -->
     <div class="my-0">
-
         <section class="">
-            <!-- Footer -->
             <footer class="text-center text-white" style="background-color: #727980;">
-                <!-- Grid container -->
-                <div class="container p-3 pb-0">
-                    <!-- Section: CTA -->
+                <nav class="container p-3 pb-0">
                     <section class="d-flex justify-content-between">
+                        <!-- Home (Profile page) button -->
                         <div id="home" class="d-flex flex-column align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
-                                class="bi bi-house-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
-                                <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
-                            </svg>
+                            <button id="btn-home" type="button" style="padding:0; border:none; background: none;"
+                                class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
+                                    class="bi bi-house-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
+                                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
+                                </svg>
+                            </button>
                             <p>Home</p>
                         </div>
+                        <!-- Add listing button -->
                         <div id="create-listing" class="d-flex flex-column align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="34"
-                                height="34" stroke-width="2">
-                                <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
-                                <path d="M3 10h18"></path>
-                                <path d="M10 3v18"></path>
-                                <path d="M16 19h6"></path>
-                                <path d="M19 16v6"></path>
-                            </svg>
+                            <button id="btn-add" type="button" style="padding:0; border:none; background: none;"
+                                class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="34"
+                                    height="34" stroke-width="2">
+                                    <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5">
+                                    </path>
+                                    <path d="M3 10h18"></path>
+                                    <path d="M10 3v18"></path>
+                                    <path d="M16 19h6"></path>
+                                    <path d="M19 16v6"></path>
+                                </svg>
+                            </button>
                             <p>Add</p>
                         </div>
+                        <!-- Notification button -->
                         <div id="notification-bell" class="d-flex flex-column align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
-                                class="bi bi-bell-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
-                            </svg>
+                            <button id="btn-bell" type="button" style="padding:0; border:none; background: none;"
+                                class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
+                                    class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                                </svg>
+                            </button>
+
                             <p>Alerts</p>
                         </div>
                     </section>
-                    <!-- Section: CTA -->
-                </div>
-                <!-- Grid container -->
-
+                </nav>
                 <!-- Copyright -->
                 <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
                     © 2025 Copyright: TextLibre
                 </div>
-                <!-- Copyright -->
             </footer>
-            <!-- Footer -->
         </section>
-
     </div>
-
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
     <script type="module" src="./scripts/store_listing.js"></script>
+    <script type="module" src="./scripts/footer.js"></script>
     <!-- <script type="module" src="./scripts/test.js"></script> -->
 
 </body>
