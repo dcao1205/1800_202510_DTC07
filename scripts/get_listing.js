@@ -7,7 +7,7 @@ function displayCardsDynamically(collection) {
         .then(allBooks => {
             allBooks.forEach(doc => {
                 var title = doc.data().title;
-                var price = doc.data().price;
+                var price = "$"+doc.data().price;
 
                 //var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
