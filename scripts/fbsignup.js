@@ -56,6 +56,6 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("User already signed in:", user);
-        window.location.href = "homepage2.html";
+        window.location.href = "edit_personal_info.html";
     }
 });
