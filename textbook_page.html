@@ -20,6 +20,10 @@
     <!-- Latest compiled and minified JavaScript -->
 
     <!-- Other libraries go here -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -73,28 +77,20 @@
     </nav>
 
     <div class="container my-5">
-        <button class="btn btn-outline-secondary d-inline-flex align-items-center mb-2" type="button">
-            Back
-        </button>
-        <div class="row row-cols-1 row-cols-md-1 g-4" >
-            <div class="col" >
-                <div class="card h-100">
-                    <img src="https://picsum.photos/500/500" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h5>
-                            <p class="card-text">Author</p>
-                            <p class="card-text">Price ($)</p>
-                            <p class="card-text">Quality</p>
-                            <p class="card-text">Description</p>
-
-                            <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                                Contact Seller
-                            </button>
-                    </div>
-                </div>
+        <h2 class="text-center mb-4">Listing Details</h2>
+        <div id="selected-listing" class="card">
+            <div class="card-body">
+                <h4 class="card-title" id="listing-title">Loading...</h4>
+                <p class="card-text"><strong>Author:</strong> <span id="listing-author"></span></p>
+                <p class="card-text"><strong>Price:</strong> $<span id="listing-price"></span></p>
+                <p class="card-text"><strong>Quality:</strong> <span id="listing-quality"></span></p>
+                <p class="card-text"><strong>Description:</strong> <span id="listing-description"></span></p>
             </div>
         </div>
     </div>
+    
+    <!-- Link to the JavaScript file -->
+    <script type="module" src="scripts/get_listing_details.js"></script>
 
     <div class="my-0">
 
