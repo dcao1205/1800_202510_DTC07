@@ -5,18 +5,19 @@ document.getElementById('message').addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Get values from form
-    const toSeller = document.getElementById('to-seller').value;
+    const user = firebase.auth().currentUser;
+    // const toSeller = document.getElementById('to-seller').value;
     const subject = document.getElementById('subject').value;
     const messageText = document.getElementById('message-text').value.trim();
 
     // Store values as a single message object if all values exist
-    if (toSeller && subject && messageText) {
+    if (user && toSeller && subject && messageText) {
         const message = {
-            to: toSeller,
+            to: '{receiver_user_id}',
             subject: subject,
             message: messageText,
-            from: '{sender_ID}',
-            time: '{time sent}'
+            from: user.uid,
+            time: firebase.firestore.FieldValue.serverTimestamp()
         };
 
         // Send data to Firebase
