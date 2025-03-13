@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('location').value = userData.location || "";
         document.getElementById('institution').value = userData.institution || "";
         document.getElementById('aboutme').value = userData.aboutme || "";
+        document.getElementById('emailhidding').checked = userData.emailhidding || false;
       } else {
         console.warn("No user profile found in Firestore.");
       }
@@ -60,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const location = document.getElementById('location').value.trim();
         const institution = document.getElementById('institution').value.trim();
         const aboutme = document.getElementById('aboutme').value.trim();
+        const emailhidding = document.getElementById('emailhidding').checked;
 
         const userProfile = {
           username,
@@ -69,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
           location,
           institution,
           aboutme,
+          emailhidding,
           updatedAt: new Date()
         };
 
