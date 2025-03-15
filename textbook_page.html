@@ -36,45 +36,8 @@
 
 <body>
 
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Hamburger Menu Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navbar Brand -->
-            <span class="navbar-brand navTitle fs-1">TextLibre</span>
-
-            <!-- Collapsible Menu -->
-            <div class="collapse navbar-collapse fs-3" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Report</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Search Form -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-
-    </nav>
+    <nav id="loggedin-header-container"></nav>
 
     <div class="container my-5">
         <a href="listings.html">
@@ -93,7 +56,7 @@
                             <p class="card-text">Quality</p>
                             <p class="card-text">Description</p>
 
-                            <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                            <button id="create-message" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
                                 Contact Seller
                             </button>
                     </div>
@@ -105,7 +68,8 @@
     <div id="footer-container"></div>
     <script type="module" src="scripts/get_listing_details.js"></script>
     <script type="module" src="scripts/footer.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script type="module" src="scripts/logged_in_header.js"></script>
+    <script type="module" src="scripts/create_message.js"></script>
 
 </body>
 
