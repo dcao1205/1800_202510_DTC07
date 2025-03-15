@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Submitting form...");
 
       const submitButton = document.querySelector('.btn-submit');
-      submitButton.innerHTML = 'Saving...';
+      submitButton.innerHTML = 'Checking username...';
       submitButton.disabled = true;
 
       try {
@@ -62,6 +62,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const institution = document.getElementById('institution').value.trim();
         const aboutme = document.getElementById('aboutme').value.trim();
         const emailhidding = document.getElementById('emailhidding').checked;
+
+
+        const usernameQuery = await db.collection('users').where('username', '==', username).get();
+        let usernameTaken = false;
+
+        usernameQuery.forEach(doc => {
+          if (doc.id !== auth.currentUser.uid) {
+            usernameTaken = true;
+          }
+        });
+
+        if (usernameTaken) {
+          alert("This username is already taken. Please choose a different one.");
+          submitButton.innerHTML = 'Save';
+          submitButton.disabled = false;
+          return;
+        }
 
         const userProfile = {
           username,
