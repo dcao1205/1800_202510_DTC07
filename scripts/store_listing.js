@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
             try {
 
                 console.log("saving")
-
                 const title = document.getElementById('title').value;
                 const author = document.getElementById('author').value;
                 const price = parseFloat(document.getElementById('price').value);
@@ -39,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const description = document.getElementById('description').value;
 
                 const listing = {
+                  user: user.uid,  
                   title,
                   author,
                   price,
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
                   description,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                   updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                  //userId: firebase.auth().currentUser.uid,
                 };
 
                 // Save to Firestore

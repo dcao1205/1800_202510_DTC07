@@ -72,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
           institution,
           aboutme,
           emailhidding,
+          sentMessages: [],
+          receivedMessages: [],
           updatedAt: new Date()
         };
 
