@@ -21,15 +21,35 @@ document.getElementById('message').addEventListener('submit', function (e) {
         };
 
         // Send data to Firebase
-        db.collection('messages').add(message);
+        db.collection('messages').add(message)
+            .then(docID => {
+                const result = docID.id;
 
-        // Show success message
-        alert('Message Sent!');
+                // Update the messages field to contain its own ID
+                const updateMessage = docID.update({
+                    id: result
+                });
 
-        // Reset form
-        this.reset();
+                // Update the user's sentMessages array
+                const updateUser = db.collection('users').doc(user.uid).update({
+                    sentMessages: firebase.firestore.FieldValue.arrayUnion(result)
+                });
 
+                // Wait for both updates to complete
+                return Promise.all([updateMessage, updateUser]);
+            })
+            .then(() => {
+                // Show success message
+                alert('Message Sent!');
+                
+                // Reset form
+                this.reset();
+            })
+            .catch(error => {
+                console.error("Error adding or updating document: ", error);
+                alert('Error sending message');
+            });
     } else {
         alert('Please fill in all information')
     }
-})
+});
