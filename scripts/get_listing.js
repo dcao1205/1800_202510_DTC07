@@ -8,12 +8,14 @@ function displayCardsDynamically(collection) {
             allBooks.forEach(doc => {
                 var title = doc.data().title;
                 var price = "$"+doc.data().price;
+                var imageUrl = doc.data().imageUrl || "https://picsum.photos/250/250";
 
                 //var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-price').innerHTML = price;
+                newcard.querySelector('.card-img-top').src = imageUrl;
 
                 document.getElementById(collection+"-go-here").appendChild(newcard);
             })
