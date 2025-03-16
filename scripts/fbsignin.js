@@ -19,6 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         .then((userCredential) => {
             // Successful login
             console.log("User signed in:", userCredential.user);
+            sessionStorage.setItem('userId', user.uid);
             window.location.href = "homepage2.html";
         })
         .catch((error) => {
@@ -60,6 +61,7 @@ document.getElementById('forgotPassword').addEventListener('click', function (e)
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("User already signed in:", user);
+        sessionStorage.setItem('userId', user.uid);
         window.location.href = "homepage2.html";
     }
 });

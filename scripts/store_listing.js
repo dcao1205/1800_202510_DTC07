@@ -1,24 +1,24 @@
-import { db } from './firebase_cred.js';
+import { db, storage } from './firebase_cred.js';
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // let imageFile = null;
+    let imageFile = null;
 
-    // document.getElementById('imageUpload').addEventListener('change', function (event) {
-    //     imageFile = event.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onload = function (e) {
-    //         document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
-    //     };
-    //     reader.readAsDataURL(imageFile);
-    // });
+    document.getElementById('imageUpload').addEventListener('change', function (event) {
+        imageFile = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+        };
+        reader.readAsDataURL(imageFile);
+    });
 
     const form = document.getElementsByClassName('create')[0];
 
     if (form) {
         console.log("form found")
         
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', async function (event) {
             event.preventDefault();
 
             console.log("here")
@@ -31,11 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
             try {
 
                 console.log("saving")
+                const user = firebase.auth().currentUser;
                 const title = document.getElementById('title').value;
                 const author = document.getElementById('author').value;
                 const price = parseFloat(document.getElementById('price').value);
                 const quality = document.getElementById('quality').value;
                 const description = document.getElementById('description').value;
+
+                let imageUrl = null;
+                if (imageFile) {
+                    const storageRef = storage.ref(`listingImgs/${imageFile.name}`);
+                    const snapshot = await storageRef.put(imageFile);
+                    imageUrl = await snapshot.ref.getDownloadURL();
+                }
 
                 const listing = {
                   user: user.uid,  
@@ -44,18 +52,18 @@ document.addEventListener('DOMContentLoaded', function () {
                   price,
                   quality,
                   description,
+                  imageUrl,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                   updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
                 };
 
                 // Save to Firestore
-                db.collection('listings').add(listing);
+                await db.collection('listings').add(listing);
 
                 // Show success message
                 alert('Listing created successfully!');
-
-                // Reset form
                 form.reset();
+                document.getElementById('imagePreview').innerHTML = "";
 
             } catch (error) {
                 console.error('Error creating listing:', error);
