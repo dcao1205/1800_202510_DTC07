@@ -1,4 +1,5 @@
-import { db } from './firebase_cred.js';
+import { auth, db } from './firebase_cred.js';
+
 
 // Function to get query parameters from URL
 function getListingIdFromURL() {
@@ -28,14 +29,12 @@ async function displayListing() {
 
         const listing = docSnap.data();
 
-        // Populate the page with listing data
         document.getElementById("listing-title").innerText = listing.title || "No Title";
-        document.getElementById("listing-author").innerText = listing.author || "Unknown";
-        document.getElementById("listing-price").innerText = listing.price || "N/A";
-        document.getElementById("listing-quality").innerText = listing.quality || "Unknown";
+        document.getElementById("listing-author").innerText = `Author: ${listing.author || "Unknown"}`;
+        document.getElementById("listing-price").innerText = `Price: $${listing.price || "N/A"}`;
+        document.getElementById("listing-quality").innerText = `Quality: ${listing.quality || "Unknown"}`;
         document.getElementById("listing-description").innerText = listing.description || "No description available.";
 
-        console.log("Listing loaded:", listing);
     } catch (error) {
         console.error("Error fetching listing:", error);
         document.getElementById("selected-listing").innerHTML = "<p>Error loading listing.</p>";
