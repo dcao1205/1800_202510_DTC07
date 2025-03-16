@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             try {
 
                 console.log("saving")
+                const user = firebase.auth().currentUser;
                 const title = document.getElementById('title').value;
                 const author = document.getElementById('author').value;
                 const price = parseFloat(document.getElementById('price').value);
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 const listing = {
-                  //user: user.uid,  
+                  user: user.uid,  
                   title,
                   author,
                   price,
