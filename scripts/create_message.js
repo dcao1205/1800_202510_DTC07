@@ -3,7 +3,7 @@ import { db } from './firebase_cred.js';
 document.addEventListener('DOMContentLoaded', function () {
 
     // HARD-CODED FOR TESTING! Edit to dynamically change.
-    const listingDocId = '0YjN1YLxKt3frr5xBViT'; 
+    const listingDocId = '7zSjAiB0ZWibkMZOhtke'; 
     
     // Get the listing data
     db.collection('listings').doc(listingDocId).get()
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 // Store the user_id in a data attribute on the button itself
                 const messageButton = document.getElementById("create-message");
-                messageButton.setAttribute('data-user-id', listingData.user_id);
+                messageButton.setAttribute('data-user-id', listingData.user);
             } else {
                 console.error("No such document!");
             }
