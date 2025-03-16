@@ -50,15 +50,24 @@
                 <div class="card h-100">
                     <img src="https://picsum.photos/500/500" class="card-img-top" alt="Textbook Image">
                     <div class="card-body">
-                        <h4 class="card-title">Title</h5>
-                            <p class="card-text">Author</p>
-                            <p class="card-text">Price ($)</p>
-                            <p class="card-text">Quality</p>
-                            <p class="card-text">Description</p>
+                        <h4 id="listing-title">Loading...</h4>
+                        <p class="card-text" id="listing-author">Author: Loading...</p>
+                        <p class="card-text" id="listing-price">Price: Loading...</p>
+                        <p class="card-text" id="listing-quality">Quality: Loading...</p>
+                        <p class="card-text" id="listing-description">Description: Loading...</p>
 
-                            <button id="create-message" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                                Contact Seller
-                            </button>
+                        <button id="create-message" class="btn btn-outline-secondary d-inline-flex align-items-center"
+                            type="button">
+                            Contact Seller
+                        </button>
+                        <!-- <button id="save-listing" class="btn  btn-outline-secondary d-inline-flex align-items-center" data-bs-toggle="button"
+                            type="button">
+                        Save listing
+                        </button> -->
+                        <button id="save-listing2" class="btn btn-outline-secondary d-inline-flex align-items-center"
+                            type="button">
+                        Save listing
+                        </button>
                     </div>
                 </div>
             </div>
@@ -70,7 +79,8 @@
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="scripts/logged_in_header.js"></script>
     <script type="module" src="scripts/create_message.js"></script>
-
+    <script type="module" src="scripts/test_saved_listing.js"></script>
+    
 </body>
 
 </html>

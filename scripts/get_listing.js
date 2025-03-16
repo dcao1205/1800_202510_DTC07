@@ -8,6 +8,7 @@ function displayCardsDynamically(collection) {
             allBooks.forEach(doc => {
                 var title = doc.data().title;
                 var price = "$"+doc.data().price;
+                var listingId = doc.id;
 
                 //var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
@@ -15,9 +16,13 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-price').innerHTML = price;
 
+                let viewDetailsButton = newcard.querySelector(".btn-primary");
+                viewDetailsButton.href = `textbook_page.html?id=${listingId}`;
+
                 document.getElementById(collection+"-go-here").appendChild(newcard);
             })
         })
+        
 }
 
 displayCardsDynamically("listings")
