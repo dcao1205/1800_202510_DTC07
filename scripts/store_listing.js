@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const username = userDoc.data().username;
 
                     const listing = {
-                        user: username,
+                        username: username,
                         title,
                         author,
                         price,
