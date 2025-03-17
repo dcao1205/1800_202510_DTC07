@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (form) {
         console.log("form found")
-        
+
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
 
@@ -44,27 +44,30 @@ document.addEventListener('DOMContentLoaded', function () {
                     const snapshot = await storageRef.put(imageFile);
                     imageUrl = await snapshot.ref.getDownloadURL();
                 }
+                // Find the listing creator's username
+                const userDoc = await db.collection('users').doc(`${user.uid}`).get();
+                if (userDoc.exists) {
+                    const username = userDoc.data().username;
 
-                const listing = {
-                  user: user.uid,  
-                  title,
-                  author,
-                  price,
-                  quality,
-                  description,
-                  imageUrl,
-                  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                  updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                };
+                    const listing = {
+                        user: username,
+                        title,
+                        author,
+                        price,
+                        quality,
+                        description,
+                        imageUrl,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    };
+                    // Save to Firestore
+                    await db.collection('listings').add(listing);
 
-                // Save to Firestore
-                await db.collection('listings').add(listing);
-
-                // Show success message
-                alert('Listing created successfully!');
-                form.reset();
-                document.getElementById('imagePreview').innerHTML = "";
-
+                    // Show success message
+                    alert('Listing created successfully!');
+                    form.reset();
+                    document.getElementById('imagePreview').innerHTML = "";
+                }
             } catch (error) {
                 console.error('Error creating listing:', error);
                 alert('Error creating listing: ' + error.message);
