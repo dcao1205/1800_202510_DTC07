@@ -35,29 +35,34 @@
     <nav id="loggedin-header-container"></nav>
 
     <!-- welcome banner&call to action -->
-    <div class="px-2 pt-2 mb-5 text-center border-bottom flex flex-col">
+    <div id="profile section" class="px-2 pt-2 mb-5 text-center border-bottom flex flex-col">
 
-        <nav id="profile page" class="d-flex p-3 rounded-3 align-items-center gap-3"
-            style="background-color: #727980;">
+        <nav id="profile page" class="d-flex p-3 rounded-3 align-items-center gap-3" style="background-color: #727980;">
             <h4 class="text-nowrap" id="accountNameSmall">Loading...</h4>
             <div id="profile sections" class="d-flex justify-content-evenly w-100">
                 <a href="user_info_page.html">
-                    <button type="button" id="info" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Info</button>
+                    <button type="button" id="info" class="btn btn-outline-light px-4 mx-3 nav-btn">Info</button>
                 </a>
-                <button type="button" id="view-messages" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Messages</button>
-                <button type="button" id="my-listings" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">My Listings</button>
-                <button type="button" id="saved" class="btn btn-outline-light px-4 mx-3" fdprocessedid="">Saved Textbooks</button>
+                <button type="button" id="messages" class="btn btn-outline-light px-4 mx-3 nav-btn">Messages</button>
+                <button type="button" id="listings" class="btn btn-outline-light px-4 mx-3 nav-btn">My Listings</button>
+                <button type="button" id="saved" class="btn btn-outline-light px-4 mx-3 nav-btn">Saved
+                    Textbooks</button>
             </div>
         </nav>
 
-        <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome <span id="accountNameLarge">Loading...</span></h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">You have no new messages.</p>
-            <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3">Support</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4" id="logoutBtnLarge">Logout</button>
+        <div id="change">
+            <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome <span id="accountNameLarge">Loading...</span>
+            </h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">You have no new messages.</p>
+                <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3">Support</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4"
+                        id="logoutBtnLarge">Logout</button>
+                </div>
             </div>
         </div>
+
     </div>
 
     <!-- Footer -->
@@ -66,6 +71,7 @@
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="scripts/homepagescript.js"></script>
     <script type="module" src="scripts/logged_in_header.js"></script>
+    <script type="module" src="scripts/profile_header.js"></script>
 </body>
 
 </html>
