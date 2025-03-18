@@ -15,6 +15,7 @@ function displayCardsDynamically(collection, searchText) {
                 var title = doc.data().title;
                 var price = "$" + doc.data().price;
                 var imageUrl = doc.data().imageUrl || "https://picsum.photos/250/250";
+                var listingId = doc.id;
 
                 if (title.toLowerCase().includes(searchText.toLowerCase())) {
                     let newcard = cardTemplate.content.cloneNode(true);
@@ -22,6 +23,8 @@ function displayCardsDynamically(collection, searchText) {
                     newcard.querySelector('.card-title').innerHTML = title;
                     newcard.querySelector('.card-price').innerHTML = price;
                     newcard.querySelector('.card-img-top').src = imageUrl;
+
+                    newcard.querySelector('.btn-primary').href = `textbook_page.html?id=${listingId}`;
 
                 document.getElementById(collection+"-go-here").appendChild(newcard);
             }})
