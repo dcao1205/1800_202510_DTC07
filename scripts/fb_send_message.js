@@ -1,5 +1,19 @@
 import { db } from './firebase_cred.js';
 
+// Populate the "To:" input
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the stored seller username localStorage
+    const sellerUsername = localStorage.getItem("selectedSellerUsername");
+
+    // Get the input elements
+    const toSellerInput = document.getElementById("to-seller");
+
+    // Populate the input fields if values exist in localStorage
+    if (sellerUsername) {
+        toSellerInput.value = sellerUsername;
+    }
+});
+
 document.getElementById('message').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -71,3 +85,4 @@ document.getElementById('message').addEventListener('submit', async function (e)
         alert('Please fill in all information');
     }
 });
+
