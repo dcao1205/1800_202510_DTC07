@@ -107,7 +107,7 @@ function displayMessages(messages) {
             <input type="checkbox" class="me-3 ms-1 selected">
             <span class="bg-primary text-white p-2 rounded-3">New</span>
             <span class="ms-3 me-2 fw-bold">From:</span>
-            <span class="fw-medium">${message.from}</span>
+            <span class="fw-medium text-nowrap overflow-hidden">${message.from}</span>
             <span class="ms-3 me-2 fw-bold">Date:</span>
             <span class="fw-medium text-nowrap overflow-hidden">${message.time}</span>
             <span class="ms-3 me-2 fw-bold">Subject:</span>
