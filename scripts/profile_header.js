@@ -102,7 +102,7 @@ function displayMessages(messages) {
     // Loop through each message data --> MISSING NEW/READ FORMAT
     messages.forEach(message => {
         const messageElement = document.createElement('div');
-        messageElement.className = 'bg-primary-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3';
+        messageElement.className = 'bg-primary-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message';
         messageElement.innerHTML = `
             <input type="checkbox" class="me-3 ms-1 selected">
             <span class="bg-primary text-white p-2 rounded-3">New</span>
@@ -112,9 +112,53 @@ function displayMessages(messages) {
             <span class="fw-medium text-nowrap overflow-hidden">${message.time}</span>
             <span class="ms-3 me-2 fw-bold">Subject:</span>
             <span class="fw-medium text-nowrap overflow-hidden">${message.subject}</span>
+            <span><button id="${message.id}" type="click" class="ms-3 me-2 fw-bold">Open</button></span>
         `;
         messagesList.appendChild(messageElement);
     });
 
     messagesContainer.appendChild(messagesHeader);
 }
+
+// Button functionality for "Open"
+document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('click', function(event) {
+        // Check if the clicked element is an "Open" button
+        if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Open') {
+            // Find the parent message element
+            const messageElement = event.target.closest('.message');
+            
+            // Extract the username (sender) from the message element
+            const fromSpans = messageElement.querySelectorAll('span');
+            let username = null;
+            let subject = null;
+            
+            // Look through spans to find the one after "From:"
+            for (let i = 0; i < fromSpans.length; i++) {
+                if (fromSpans[i].textContent === 'From:' && i + 1 < fromSpans.length) {
+                    username = fromSpans[i + 1].textContent;
+                    break;
+                }
+            }
+            
+            // Find subject as well from "Subject:"
+            for (let i = 0; i < fromSpans.length; i++) {
+                if (fromSpans[i].textContent === 'Subject:' && i + 1 < fromSpans.length) {
+                    subject = fromSpans[i + 1].textContent;
+                    break;
+                }
+            }
+
+            if (username) {
+                // Store the username and subject for use on the reply page
+                localStorage.setItem("selectedMessageUsername", username);
+                localStorage.setItem("selectedMessageSubject", subject);
+                
+                // Navigate to the reply page
+                window.location.href = "reply_message.html";
+            } else {
+                console.error("Could not find username in the message");
+            }
+        }
+    });
+});
