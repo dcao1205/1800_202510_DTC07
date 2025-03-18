@@ -34,6 +34,7 @@ async function displayListing() {
         document.getElementById("listing-price").innerText = `Price: $${listing.price || "N/A"}`;
         document.getElementById("listing-quality").innerText = `Quality: ${listing.quality || "Unknown"}`;
         document.getElementById("listing-description").innerText = listing.description || "No description available.";
+        document.getElementById("listing-username").innerText = listing.username || "No description available.";
 
     } catch (error) {
         console.error("Error fetching listing:", error);
