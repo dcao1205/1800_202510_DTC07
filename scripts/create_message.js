@@ -1,35 +1,43 @@
 import { db } from './firebase_cred.js';
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Get the message button element
+    const messageButton = document.getElementById("create-message");
 
-    // HARD-CODED FOR TESTING! Edit to dynamically change.
-    const listingDocId = '7zSjAiB0ZWibkMZOhtke'; 
-    
-    // Get the listing data
-    db.collection('listings').doc(listingDocId).get()
-        .then((doc) => {
-            if (doc.exists) {
-                const listingData = doc.data();
-                
-                // Store the user_id in a data attribute on the button itself
-                const messageButton = document.getElementById("create-message");
-                messageButton.setAttribute('data-user-id', listingData.user);
+    messageButton.addEventListener("click", function () {
+        try {
+            // Get the username element
+            const usernameElement = document.getElementById("listing-username");
+
+            let username = "";
+
+            if (usernameElement) {
+                const fullText = usernameElement.textContent || usernameElement.innerText;
+                console.log("Full text content:", fullText);
+
+                // Obtain just the username
+                if (fullText.includes("Username:")) {
+                    username = fullText.split("Username:")[1].trim();
+                } else if (fullText.includes(":")) {
+                    username = fullText.split(":")[1].trim();
+                } else {
+                    username = fullText.trim();
+                }
+
+                console.log("Extracted username:", username);
             } else {
-                console.error("No such document!");
+                console.error("Username element not found");
             }
-        })
-        .catch((error) => {
-            console.error("Error getting document:", error);
-        });
-    
-    
-    document.getElementById("create-message").addEventListener("click", function () {
-        // Get the user ID from the button being clicked on
-        const userId = this.getAttribute('data-user-id');
-        
-        // Store textbook creator's ID to find and update the "To:" create message field
-        localStorage.setItem("selectedSellerId", userId);
-        
-        window.location.href = "create_message.html";
+
+            // Set the localStorage value
+            console.log("Setting localStorage with value:", username);
+            localStorage.setItem("selectedSellerUsername", username);
+
+            window.location.href = "create_message.html";
+        } catch (error) {
+            console.error("Error processing username:", error);
+
+            window.location.href = "create_message.html";
+        }
     });
 });
