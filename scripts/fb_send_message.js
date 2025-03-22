@@ -44,6 +44,7 @@ document.getElementById('message').addEventListener('submit', async function (e)
                 message: messageText,
                 from: username,
                 senderID: user.uid,
+                read: false,
                 time: firebase.firestore.FieldValue.serverTimestamp()
             };
 
