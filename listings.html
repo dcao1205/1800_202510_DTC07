@@ -70,31 +70,18 @@
             </form>
         </div>
     </nav>
-
-    <!-- welcome banner&call to action -->
-    <!-- <div class="px-4 pt-5 my-5 text-center border-bottom flex flex-col">
-        <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome to TextLibre</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">We're building a student-first platform designed to make buying and selling
-                second-hand textbooks easier, smarter, and
-                more seamless than ever. With a modern and simple user interface, we ensure that finding affordable
-                books or selling
-                your old ones is hassle-free.
-
-                Join us in creating a better way for students to connect, save money, and make the most of their
-                textbooks!</p>
-            <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3" fdprocessedid="">Sign
-                    up</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4"
-                    fdprocessedid="itmq9n">Login</button>
-            </div>
-        </div>
-    </div> -->
+    <!-- Filter and Sort -->
     <div class="container mb-4 text-center">
-        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection" aria-expanded="false">
-            Toggle Filters
-        </button>
+        <div class="d-flex justify-content-center gap-2 mb-3">
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection" aria-expanded="false">
+                Toggle Filters
+            </button>
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#sortSection" aria-expanded="false">
+                Toggle Sort Options
+            </button>
+        </div>
+
+        <!-- Filter -->
         <div class="collapse mt-3" id="filterSection">
             <div class="card card-body">
                 <h5>Filter by:</h5>
@@ -128,6 +115,32 @@
                     </div>
                 </div>
                 <button class="btn btn-success" id="applyFilters">Apply Filters</button>
+            </div>
+        </div>
+        <!-- Sort -->
+        <div class="collapse mt-3" id="sortSection">
+            <div class="card card-body">
+                <h5>Sort by:</h5>
+                <div class="btn-group" role="group" aria-label="Sort options">
+                    <input type="radio" class="btn-check" name="sortOption" id="sortPrice" value="price" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="sortPrice">Price</label>
+                    
+                    <input type="radio" class="btn-check" name="sortOption" id="sortQuality" value="quality" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sortQuality">Quality</label>
+                    
+                    <input type="radio" class="btn-check" name="sortOption" id="sortDate" value="datePosted" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sortDate">Date Posted</label>
+                </div>
+                <div class="mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sortDirection" id="sortAsc" value="asc" checked>
+                        <label class="form-check-label" for="sortAsc">Ascending</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sortDirection" id="sortDesc" value="desc">
+                        <label class="form-check-label" for="sortDesc">Descending</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
