@@ -25,9 +25,10 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
+
     <div class="container mt-4">
         <h2 class="text-center">Personal Profile</h2>
         <div class="card p-4 ">
@@ -114,13 +115,14 @@
                 </div>
             </div>
         </div>
-        <div id="footer-container"></div>
-        <script type="module" src="scripts/footer.js"></script>
-        <script type="module" src="./scripts/fbsignin.js"></script>
-        <script type="module" src="./scripts/store_personal_info.js"></script>
-        <script type="module" src="./scripts/logged_in_header.js"></script>
-        <!-- <script type="module" src="./scripts/test.js"></script> -->
-        <script type="module" src="scripts/retrieve_saved_listings.js"></script>
+    </div>
+    <div id="footer-container"></div>
+    <script type="module" src="scripts/footer.js"></script>
+    <script type="module" src="./scripts/fbsignin.js"></script>
+    <script type="module" src="./scripts/store_personal_info.js"></script>
+    <script type="module" src="./scripts/logged_in_header.js"></script>
+    <!-- <script type="module" src="./scripts/test.js"></script> -->
+    <script type="module" src="scripts/retrieve_saved_listings.js"></script>
 </body>
 
 </html>
