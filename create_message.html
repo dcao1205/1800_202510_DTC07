@@ -32,52 +32,55 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
     <!-- Create Message Form -->
-    <div class="container mt-4 bg-light">
-        <h2 class="text-center p-2">Create Message</h2>
-        <!-- Create Message Information -->
-        <form id="message">
-            <!-- Message header -->
-            <div id="message-header" class="d-flex flex-column border border-3 my-2">
-                <!-- To seller input -->
-                <div class="d-flex align-items-center">
-                    <label for="to-seller" class="mx-2">To:</label>
-                    <input type="text" id="to-seller" name="to-seller" placeholder="{Seller's ID}"
-                        class="w-100 me-2 mt-2 ">
+    <main class="flex-grow-1 d-flex flex-column justify-content-center">
+        <div class="container mt-4 bg-light">
+            <h2 class="text-center p-2">Create Message</h2>
+            <!-- Create Message Information -->
+            <form id="message">
+                <!-- Message header -->
+                <div id="message-header" class="d-flex flex-column border border-3 my-2">
+                    <!-- To seller input -->
+                    <div class="d-flex align-items-center">
+                        <label for="to-seller" class="mx-2">To:</label>
+                        <input type="text" id="to-seller" name="to-seller" placeholder="{Seller's ID}"
+                            class="w-100 me-2 mt-2 ">
+                    </div>
+                    <!-- Subject input -->
+                    <div class="d-flex align-items-center mb-2">
+                        <label for="subject" class="mx-2">Subject:</label>
+                        <input type="text" id="subject" name="subject" placeholder="Interested in {Seller's textbook}"
+                            class="w-100 me-2 mt-2 ">
+                    </div>
                 </div>
-                <!-- Subject input -->
-                <div class="d-flex align-items-center mb-2">
-                    <label for="subject" class="mx-2">Subject:</label>
-                    <input type="text" id="subject" name="subject" placeholder="Interested in {Seller's textbook}"
-                        class="w-100 me-2 mt-2 ">
+                <!-- Message text -->
+                <div id="message-body">
+                    <textarea id="message-text" name="message-text"
+                        placeholder="Hello there, I am interesting in buying your textbook." class="w-100"
+                        style="height: 200px;"></textarea>
                 </div>
-            </div>
-            <!-- Message text -->
-            <div id="message-body">
-                <textarea id="message-text" name="message-text"
-                    placeholder="Hello there, I am interesting in buying your textbook." class="w-100"
-                    style="height: 200px;"></textarea>
-            </div>
 
-            <!-- Back and Send Message Button -->
-            <div class="d-flex justify-content-between mt-2 pb-2 mb-3">
-                <!-- Back Arrow -->
-                <button type="button" class="rounded btn btn-outline-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-linecap="round" stroke-linejoin="round" width="50" height="50" stroke-width="2">
-                        <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
-                    </svg>
-                </button>
+                <!-- Back and Send Message Button -->
+                <div class="d-flex justify-content-between mt-2 pb-2 mb-3">
+                    <!-- Back Arrow -->
+                    <button type="button" class="rounded btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" width="50" height="50" stroke-width="2">
+                            <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
+                        </svg>
+                    </button>
 
-                <button type="submit" class="text-nowrap rounded fs-2 fw-medium btn btn btn-outline-secondary">
-                    Send Message</button>
-            </div>
-        </form>
-    </div>
+                    <button type="submit" class="text-nowrap rounded fs-2 fw-medium btn btn btn-outline-secondary">
+                        Send Message</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
 
     <div id="footer-container"></div>
 

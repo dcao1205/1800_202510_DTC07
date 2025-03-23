@@ -34,146 +34,125 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Hamburger Menu Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav id="loggedin-header-container"></nav>
 
-            <!-- Navbar Brand -->
-            <span class="navbar-brand navTitle fs-1">TextLibre</span>
-
-            <!-- Collapsible Menu -->
-            <div class="collapse navbar-collapse fs-3" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Report</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Search Form -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
     <!-- Filter and Sort -->
-    <div class="container mb-4 text-center">
-        <div class="d-flex justify-content-center gap-2 mb-3">
-            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection" aria-expanded="false">
-                Toggle Filters
-            </button>
-            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#sortSection" aria-expanded="false">
-                Toggle Sort Options
-            </button>
-        </div>
-
-        <!-- Filter -->
-        <div class="collapse mt-3" id="filterSection">
-            <div class="card card-body">
-                <h5>Filter by:</h5>
-                <div class="mb-2">
-                    <label for="priceFilter" class="form-label">Max Price:</label>
-                    <select id="priceFilter" class="form-select">
-                        <option value="99999">No Limit</option>
-                        <option value="10">$10</option>
-                        <option value="20">$20</option>
-                        <option value="50">$50</option>
-                        <option value="100">$100</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <h6>Condition:</h6>
-                    <div class="form-check">
-                        <input class="form-check-input qualityFilter" type="checkbox" value="New" id="qualityNew">
-                        <label class="form-check-label" for="qualityNew">New</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input qualityFilter" type="checkbox" value="Like New" id="qualityLike New">
-                        <label class="form-check-label" for="qualityLike New">Like New</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input qualityFilter" type="checkbox" value="Used" id="qualityUsed">
-                        <label class="form-check-label" for="qualityUsed">Used</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input qualityFilter" type="checkbox" value="Worn" id="qualityWorn">
-                        <label class="form-check-label" for="qualityWorn">Worn</label>
-                    </div>
-                </div>
-                <button class="btn btn-success" id="applyFilters">Apply Filters</button>
+    <main class="flex-grow-1 d-flex flex-column">
+        <div class="container mb-4 text-center">
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#filterSection" aria-expanded="false">
+                    Toggle Filters
+                </button>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sortSection" aria-expanded="false">
+                    Toggle Sort Options
+                </button>
             </div>
-        </div>
-        <!-- Sort -->
-        <div class="collapse mt-3" id="sortSection">
-            <div class="card card-body">
-                <h5>Sort by:</h5>
-                <div class="btn-group" role="group" aria-label="Sort options">
-                    <input type="radio" class="btn-check" name="sortOption" id="sortPrice" value="price" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="sortPrice">Price</label>
-                    
-                    <input type="radio" class="btn-check" name="sortOption" id="sortQuality" value="quality" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sortQuality">Quality</label>
-                    
-                    <input type="radio" class="btn-check" name="sortOption" id="sortDate" value="datePosted" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sortDate">Date Posted</label>
-                </div>
-                <div class="mt-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sortDirection" id="sortAsc" value="asc" checked>
-                        <label class="form-check-label" for="sortAsc">Ascending</label>
+
+            <!-- Filter -->
+            <div class="collapse mt-3" id="filterSection">
+                <div class="card card-body">
+                    <h5>Filter by:</h5>
+                    <div class="mb-2">
+                        <label for="priceFilter" class="form-label">Max Price:</label>
+                        <select id="priceFilter" class="form-select">
+                            <option value="99999">No Limit</option>
+                            <option value="10">$10</option>
+                            <option value="20">$20</option>
+                            <option value="50">$50</option>
+                            <option value="100">$100</option>
+                        </select>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sortDirection" id="sortDesc" value="desc">
-                        <label class="form-check-label" for="sortDesc">Descending</label>
+                    <div class="mb-3">
+                        <h6>Condition:</h6>
+                        <div class="form-check">
+                            <input class="form-check-input qualityFilter" type="checkbox" value="New" id="qualityNew">
+                            <label class="form-check-label" for="qualityNew">New</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input qualityFilter" type="checkbox" value="Like New"
+                                id="qualityLike New">
+                            <label class="form-check-label" for="qualityLike New">Like New</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input qualityFilter" type="checkbox" value="Used" id="qualityUsed">
+                            <label class="form-check-label" for="qualityUsed">Used</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input qualityFilter" type="checkbox" value="Worn" id="qualityWorn">
+                            <label class="form-check-label" for="qualityWorn">Worn</label>
+                        </div>
                     </div>
+                    <button class="btn btn-success" id="applyFilters">Apply Filters</button>
                 </div>
             </div>
-        </div>
-    </div>
-    
+            <!-- Sort -->
+            <div class="collapse mt-3" id="sortSection">
+                <div class="card card-body">
+                    <h5>Sort by:</h5>
+                    <div class="btn-group" role="group" aria-label="Sort options">
+                        <input type="radio" class="btn-check" name="sortOption" id="sortPrice" value="price"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="sortPrice">Price</label>
 
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Search Results</h2>
-        <div id="listings-go-here" class="row row-cols-1 row-cols-md-2 g-4">
-        </div>
-    </div>
+                        <input type="radio" class="btn-check" name="sortOption" id="sortQuality" value="quality"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="sortQuality">Quality</label>
 
-    <template id="bookCardTemplate">
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                <div class="card-body">
-                    <h5 class="card-title">Book 1</h5>
-                    <p class="card-price">$50</p>
-                    <p class="card-quality">Condition: New</p>
-                    <a href="textbook_page.html?id=LISTING_ID" class="btn btn-primary">View Details</a>
-                    <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
-                        Contact Seller
-                    </button>
+                        <input type="radio" class="btn-check" name="sortOption" id="sortDate" value="datePosted"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="sortDate">Date Posted</label>
+                    </div>
+                    <div class="mt-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sortDirection" id="sortAsc" value="asc"
+                                checked>
+                            <label class="form-check-label" for="sortAsc">Ascending</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sortDirection" id="sortDesc"
+                                value="desc">
+                            <label class="form-check-label" for="sortDesc">Descending</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </template>
+
+
+        <div class="container my-5">
+            <h2 class="text-center mb-4">Search Results</h2>
+            <div id="listings-go-here" class="row row-cols-1 row-cols-md-2 g-4">
+            </div>
+        </div>
+
+        <template id="bookCardTemplate">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Book 1</h5>
+                        <p class="card-price">$50</p>
+                        <p class="card-quality">Condition: New</p>
+                        <a href="textbook_page.html?id=LISTING_ID" class="btn btn-primary">View Details</a>
+                        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                            Contact Seller
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </main>
 
     <div id="footer-container"></div>
 
     <script type="module" src="scripts/footer.js"></script>
-    <!-- Link to scripts of your own -->
     <script type="module" src="./scripts/get_listing.js"></script>
+    <script type="module" src="scripts/logged_in_header.js"></script>
 
 </body>
 
