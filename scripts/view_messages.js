@@ -19,7 +19,63 @@ document.addEventListener('DOMContentLoaded', async function () {
         await populateUserInfo(user);
     }
 
+    // Create modal container for message popup
+    createMessageModal();
 });
+
+// AI help to create pop up modal container using Bootstrap
+function createMessageModal() {
+    // Create the modal HTML
+    const modalHTML = `
+    <div class="modal fade" id="messageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Message Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="fw-bold">From: </span><span id="modalFrom"></span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-bold">Date: </span><span id="modalDate"></span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-bold">Subject: </span><span id="modalSubject"></span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-bold">Message: </span>
+                        <div id="modalContent" class="p-3 border rounded bg-light mt-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" id="replyButton">Reply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // Add modal to document body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    // Add event listener for the reply button
+    document.getElementById('replyButton').addEventListener('click', function() {
+        const messageId = this.getAttribute('data-message-id'); // custom data-message-id attribute from the button -> unique id
+        const username = document.getElementById('modalFrom').textContent; // sender's username from the modal
+        const subject = document.getElementById('modalSubject').textContent; // message subject from the modal
+        
+        // Store the needed data for reply page
+        localStorage.setItem("selectedMessageUsername", username);
+        localStorage.setItem("selectedMessageSubject", subject);
+        localStorage.setItem("selectedMessageId", messageId);
+        
+        // Navigate to reply page
+        window.location.href = "reply_message.html";
+    });
+}
 
 async function populateUserInfo(user) {
     try {
@@ -57,7 +113,8 @@ async function loadMessages(userData) {
                 from: messageDoc.data().from,
                 time: messageDoc.data().time.toDate().toLocaleString(),
                 subject: messageDoc.data().subject,
-                read: messageDoc.data().read || false
+                read: messageDoc.data().read || false,
+                content: messageDoc.data().message || "No content available."
             });
         }
 
@@ -71,7 +128,7 @@ async function loadMessages(userData) {
 }
 
 function displayMessages(messages) {
-    // HTML container to prepend received messages
+    // HTML container for received messages
     const messagesContainer = document.getElementById('receivedMessages');
 
     if (!messagesContainer) {
@@ -79,32 +136,31 @@ function displayMessages(messages) {
         return;
     }
 
-    // Clear any existing content
+    // Clear any existing content --> is there a more efficient method?
     messagesContainer.innerHTML = '';
 
     // If there are no messages
-    if (messages.length === 0) {
+    if (messages.length == 0) {
         messagesContainer.innerHTML = "<p class='text-center py-4'>No messages to display.</p>";
         return;
     }
 
     // Loop through each message data
     messages.forEach(message => {
-        const messageElement = document.createElement('div');
+        const messageElement = document.createElement('div'); // Container holding each message
+        // Different styles depending on status
         if (message.read) {
-            messageElement.className = 'bg-success-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message';
+            messageElement.className = 'bg-success-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message'; // Read
         } else {
-            messageElement.className = 'bg-primary-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message';
+            messageElement.className = 'bg-primary-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message'; // New
         }
-        // Status badge (New or Read)
+        // Status (New or Read)
         const status = message.read ?
-            `<span class="bg-success text-white p-2 rounded-3">Read</span>
-            
-            `:
-            `<span class="bg-primary text-white p-2 rounded-3">New</span>`;
-        // Fill in message data
+            `<span class="bg-success text-white p-2 rounded-3">Read</span>`: // If true
+            `<span class="bg-primary text-white p-2 rounded-3">New</span>`; // If false
+        // Fill in message data -> AI help to use regular expressions in replace method.
         messageElement.innerHTML = `
-            <input class="form-check-input me-3" type="checkbox" id="input-${message.id}">
+            <input class="form-check-input me-3" type="checkbox" id="${message.id}">
             ${status}
             <span class="ms-3 me-2 fw-bold">From:</span>
             <span class="fw-medium text-nowrap overflow-hidden">${message.from}</span>
@@ -112,9 +168,13 @@ function displayMessages(messages) {
             <span class="fw-medium text-nowrap overflow-hidden">${message.time}</span>
             <span class="ms-3 me-2 fw-bold">Subject:</span>
             <span class="fw-medium text-nowrap overflow-hidden">${message.subject}</span>
-            <span><button id="${message.id}" type="button" class="ms-3 me-2 fw-bold open-btn">Open</button></span>
+            <span><button id="${message.id}" type="button" class="ms-3 me-2 fw-bold open-btn" 
+                data-from="${message.from}" 
+                data-time="${message.time}" 
+                data-subject="${message.subject}" 
+                data-content="${message.content.replace(/"/g, '&quot;')}">Open</button></span>
         `;
-        messagesContainer.prepend(messageElement);
+        messagesContainer.prepend(messageElement); // Newer messages to the top
     });
 
     // Add event listeners for Open buttons
@@ -122,50 +182,46 @@ function displayMessages(messages) {
 }
 
 function openButtonEventListeners() {
-    const openButtons = document.querySelectorAll('.open-btn');
-    // AI help to retrieve message data from the selected message
+    const openButtons = document.querySelectorAll('.open-btn'); // Select all "Open" buttons
+    
+    // Functionality for all "Open" buttons
     openButtons.forEach(button => {
         button.addEventListener('click', async function () {
-            // Find the parent message element (the message being click on with "Open")
+            // Obtain values from made up attributes from each button
+            const messageId = this.id; 
+            const from = this.getAttribute('data-from');
+            const time = this.getAttribute('data-time');
+            const subject = this.getAttribute('data-subject');
+            const content = this.getAttribute('data-content');
+            
+            // Update message read status in Firestore
+            await db.collection("messages").doc(messageId).update({
+                read: true
+            });
+            
+            // Find the parent message element (the message being selected by clicking Open) and update its appearance
             const messageElement = this.closest('.message');
-
-            // Extract the username (sender) from the message element
-            const fromSpans = messageElement.querySelectorAll('span');
-            let username = null;
-            let subject = null;
-
-            // Look through spans to find the one after "From:"
-            for (let i = 0; i < fromSpans.length; i++) {
-                if (fromSpans[i].textContent === 'From:' && i + 1 < fromSpans.length) {
-                    username = fromSpans[i + 1].textContent;
-                    break;
-                }
+            messageElement.classList.remove('bg-primary-subtle');
+            messageElement.classList.add('bg-success-subtle');
+            
+            // Update the status "Read"/"New"
+            const status = messageElement.querySelector('span.bg-primary');
+            if (status) {
+                status.classList.remove('bg-primary');
+                status.classList.add('bg-success');
+                status.textContent = 'Read';
             }
-
-            // Find subject as well from "Subject:"
-            for (let i = 0; i < fromSpans.length; i++) {
-                if (fromSpans[i].textContent === 'Subject:' && i + 1 < fromSpans.length) {
-                    subject = fromSpans[i + 1].textContent;
-                    break;
-                }
-            }
-
-            if (username) {
-                // Store the username and subject for use on the reply page
-                localStorage.setItem("selectedMessageUsername", username);
-                localStorage.setItem("selectedMessageSubject", subject);
-                localStorage.setItem("selectedMessageId", this.id);
-
-                // Change status of message to read and display different colours
-                await db.collection("messages").doc(this.id).update({
-                    read: true
-                })
-
-                // Navigate to the reply page
-                window.location.href = "reply_message.html";
-            } else {
-                console.error("Could not find username in the message");
-            }
+            
+            // Populate modal with message data
+            document.getElementById('modalFrom').textContent = from;
+            document.getElementById('modalDate').textContent = time;
+            document.getElementById('modalSubject').textContent = subject;
+            document.getElementById('modalContent').textContent = content;
+            document.getElementById('replyButton').setAttribute('data-message-id', messageId);
+            
+            // Show the modal. AI help.
+            const messageModal = new bootstrap.Modal(document.getElementById('messageModal')); // creates a new instance
+            messageModal.show(); // uses that instance to display the modal
         });
     });
 }

@@ -41,14 +41,16 @@
     <main class="flex-grow-1 d-flex flex-column">
         <div class="container mb-5 bg-body-secondary pb-3 rounded h-100 flex-grow-1">
             <!-- Message Header -->
-            <div class="position-relative d-flex justify-content-center">
-                <!-- Delete and Read buttons for selected elements -->
-                <div class="position-absolute start-0 top-50 translate-middle-y d-flex gap-3 ms-5">
-                    <button>DELETE</button>
-                    <button>READ</button>
+            <div class="row align-items-center py-2">
+                <div class="col-md-4 col-12 mb-3 mb-md-0">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-danger btn-delete">DELETE</button>
+                        <button class="btn btn-success btn-read">READ</button>
+                    </div>
                 </div>
-                <h1 class="py-2">Your Messages</h1>
-            </div>
+                <div class="col-md-4 col-12 text-center text-nowrap">
+                    <h1 class="mb-0">Your Messages</h1>
+                </div>
 
             <div id="receivedMessages">
             </div>
