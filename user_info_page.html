@@ -31,7 +31,18 @@
 
     <div class="container mt-4">
         <h2 class="text-center">Personal Profile</h2>
-        <div class="card p-4 ">
+        <div class="card p-4 position-relative">
+            <button onclick="window.location.href='edit_personal_info.html'"
+                class="btn btn-outline-secondary btn-sm position-absolute" style="top: 10px; right: 10px;"
+                title="Edit Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                    <path d="M13.5 6.5l4 4" />
+                </svg>
+            </button>
             <div class="text-center mb-3">
                 <img id="profileImage" src="" class="rounded-circle border border-secondary p-1" width="120"
                     height="120" style="background-color: #f0f0f0;">
@@ -54,51 +65,8 @@
         </p>
         <div class="collapse" id="My-listings">
             <div class="container my-5">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Book 1</h5>
-                                <p class="card-text">$50</p>
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Book 2</h5>
-                                <p class="card-text">$60</p>
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Book 3</h5>
-                                <p class="card-text">$45</p>
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="https://picsum.photos/250/250" class="card-img-top" alt="Textbook Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Book 4</h5>
-                                <p class="card-text">$55</p>
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div id="my-listings-container" class="row row-cols-1 row-cols-md-4 g-4">
+                    <!-- Listings will be dynamically inserted here -->
                 </div>
             </div>
         </div>
@@ -123,6 +91,10 @@
     <script type="module" src="./scripts/logged_in_header.js"></script>
     <!-- <script type="module" src="./scripts/test.js"></script> -->
     <script type="module" src="scripts/retrieve_saved_listings.js"></script>
+    <script type="module" src="scripts/load_user_info.js"></script>
+    <script type="module" src="scripts/retrieve_my_listing.js"></script>
+
+
 </body>
 
 </html>
