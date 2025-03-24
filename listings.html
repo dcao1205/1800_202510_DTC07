@@ -125,33 +125,23 @@
             </div>
         </div>
 
-        <div id="overlay" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-
-        <!-- Report Modal -->
-        <div id="reportModal" class="modal fade" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Report Listing</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="reportReason" class="form-label">Reason:</label>
-                        <select id="reportReason" class="form-select">
-                            <option value="">Select a reason</option>
-                            <option value="Spam">Spam</option>
-                            <option value="Inappropriate">Inappropriate Content</option>
-                            <option value="Scam">Scam</option>
-                        </select>
+        <div id="reportModal" class="container p-4 border rounded shadow bg-white" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; z-index: 1050;">
+            <h5 class="mb-3">Report Listing</h5>
         
-                        <label for="reportDetails" class="form-label mt-3">Details:</label>
-                        <textarea id="reportDetails" class="form-control" rows="3" placeholder="Provide additional details"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="reportSubmit" class="btn btn-danger">Submit</button>
-                        <button type="button" id="reportClose" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
+            <label for="reportReason" class="form-label">Reason:</label>
+            <select id="reportReason" class="form-select">
+                <option value="">Select a reason</option>
+                <option value="Spam">Spam</option>
+                <option value="Inappropriate">Inappropriate Content</option>
+                <option value="Scam">Scam</option>
+            </select>
+        
+            <label for="reportDetails" class="form-label mt-3">Details:</label>
+            <textarea id="reportDetails" class="form-control" rows="3" placeholder="Provide additional details"></textarea>
+        
+            <div class="d-flex justify-content-end mt-3">
+                <button id="reportSubmit" class="btn btn-danger me-2">Submit</button>
+                <button id="reportClose" class="btn btn-secondary">Cancel</button>
             </div>
         </div>
 
@@ -185,7 +175,6 @@
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="./scripts/get_listing.js"></script>
     <script type="module" src="scripts/logged_in_header.js"></script>
-    <script type="module" src="scripts/reports.js"></script>
 
 </body>
 
