@@ -32,6 +32,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/listings.css">
+    <link rel="stylesheet" href="./styles/reports.css">
 
 </head>
 
@@ -124,6 +125,35 @@
             </div>
         </div>
 
+        <div id="overlay" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+
+        <!-- Report Modal -->
+        <div id="reportModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Report Listing</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="reportReason" class="form-label">Reason:</label>
+                        <select id="reportReason" class="form-select">
+                            <option value="">Select a reason</option>
+                            <option value="Spam">Spam</option>
+                            <option value="Inappropriate">Inappropriate Content</option>
+                            <option value="Scam">Scam</option>
+                        </select>
+        
+                        <label for="reportDetails" class="form-label mt-3">Details:</label>
+                        <textarea id="reportDetails" class="form-control" rows="3" placeholder="Provide additional details"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="reportSubmit" class="btn btn-danger">Submit</button>
+                        <button type="button" id="reportClose" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="container my-5">
             <h2 class="text-center mb-4">Search Results</h2>
@@ -143,6 +173,7 @@
                         <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
                             Contact Seller
                         </button>
+                        <button class="btn btn-danger report-btn" data-listing-id="">Report</button>
                     </div>
                 </div>
             </div>
@@ -154,6 +185,7 @@
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="./scripts/get_listing.js"></script>
     <script type="module" src="scripts/logged_in_header.js"></script>
+    <script type="module" src="scripts/reports.js"></script>
 
 </body>
 
