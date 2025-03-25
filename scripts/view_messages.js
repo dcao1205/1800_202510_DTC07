@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Create modal container for message popup
     createMessageModal();
+
+    // Add event listener to the delete button
+    document.querySelector('.btn-delete').addEventListener('click', deleteButton);
 });
 
 // AI help to create pop up modal container using Bootstrap
@@ -62,16 +65,16 @@ function createMessageModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
     // Add event listener for the reply button
-    document.getElementById('replyButton').addEventListener('click', function() {
+    document.getElementById('replyButton').addEventListener('click', function () {
         const messageId = this.getAttribute('data-message-id'); // custom data-message-id attribute from the button -> unique id
         const username = document.getElementById('modalFrom').textContent; // sender's username from the modal
         const subject = document.getElementById('modalSubject').textContent; // message subject from the modal
-        
+
         // Store the needed data for reply page
         localStorage.setItem("selectedMessageUsername", username);
         localStorage.setItem("selectedMessageSubject", subject);
         localStorage.setItem("selectedMessageId", messageId);
-        
+
         // Navigate to reply page
         window.location.href = "reply_message.html";
     });
@@ -156,7 +159,7 @@ function displayMessages(messages) {
         }
         // Status (New or Read)
         const status = message.read ?
-            `<span class="bg-success text-white p-2 rounded-3">Read</span>`: // If true
+            `<span class="bg-success text-white p-2 rounded-3">Read</span>` : // If true
             `<span class="bg-primary text-white p-2 rounded-3">New</span>`; // If false
         // Fill in message data -> AI help to use regular expressions in replace method.
         messageElement.innerHTML = `
@@ -183,27 +186,27 @@ function displayMessages(messages) {
 
 function openButtonEventListeners() {
     const openButtons = document.querySelectorAll('.open-btn'); // Select all "Open" buttons
-    
+
     // Functionality for all "Open" buttons
     openButtons.forEach(button => {
         button.addEventListener('click', async function () {
             // Obtain values from made up attributes from each button
-            const messageId = this.id; 
+            const messageId = this.id;
             const from = this.getAttribute('data-from');
             const time = this.getAttribute('data-time');
             const subject = this.getAttribute('data-subject');
             const content = this.getAttribute('data-content');
-            
+
             // Update message read status in Firestore
             await db.collection("messages").doc(messageId).update({
                 read: true
             });
-            
+
             // Find the parent message element (the message being selected by clicking Open) and update its appearance
             const messageElement = this.closest('.message');
             messageElement.classList.remove('bg-primary-subtle');
             messageElement.classList.add('bg-success-subtle');
-            
+
             // Update the status "Read"/"New"
             const status = messageElement.querySelector('span.bg-primary');
             if (status) {
@@ -211,17 +214,76 @@ function openButtonEventListeners() {
                 status.classList.add('bg-success');
                 status.textContent = 'Read';
             }
-            
+
             // Populate modal with message data
             document.getElementById('modalFrom').textContent = from;
             document.getElementById('modalDate').textContent = time;
             document.getElementById('modalSubject').textContent = subject;
             document.getElementById('modalContent').textContent = content;
             document.getElementById('replyButton').setAttribute('data-message-id', messageId);
-            
+
             // Show the modal. AI help.
             const messageModal = new bootstrap.Modal(document.getElementById('messageModal')); // creates a new instance
             messageModal.show(); // uses that instance to display the modal
         });
     });
+
+    function deleteButton() {
+
+    }
+}
+
+async function deleteButton() {
+    // Get all checked checkboxes
+    const checkedInputs = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    // Exit function if nothing selected
+    if (checkedInputs.length === 0) {
+        alert('No messages selected for deletion');
+        return;
+    }
+
+    try {
+        const user = auth.currentUser;
+        const userId = user.uid;
+
+        // Collect message IDs to delete. AI help.
+        const messageIdsToDelete = Array.from(checkedInputs).map(input => input.id);
+
+        // Get the user document reference
+        const userDocRef = db.collection("users").doc(userId);
+        const userDoc = await userDocRef.get();
+        const userData = userDoc.data();
+
+        // Remove message IDs from user's receivedMessages array
+        const updatedReceivedMessages = userData.receivedMessages.filter(
+            messageId => !messageIdsToDelete.includes(messageId)
+        );
+
+        // Delete individual messages from messages collection
+        const deleteMessages = messageIdsToDelete.map(messageId => 
+            db.collection("messages").doc(messageId).delete()
+        );
+
+        // Wait for all message deletions to complete
+        await Promise.all(deleteMessages);
+
+        // Update user document with new receivedMessages array
+        await userDocRef.update({
+            receivedMessages: updatedReceivedMessages
+        });
+
+        // Remove deleted messages from the UI
+        messageIdsToDelete.forEach(messageId => {
+            const messageElement = document.getElementById(messageId).closest('.message');
+            if (messageElement) {
+                messageElement.remove();
+            }
+        });
+
+        alert(`${messageIdsToDelete.length} message(s) deleted successfully`);
+    } catch (error) {
+        console.error('Error deleting messages:', error);
+        alert('Failed to delete messages');
+    }
 }

@@ -40,48 +40,53 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- NavBar -->
     <nav id="loggedout-header-container"></nav>
 
     <!-- Sign-Up Form -->
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow-lg p-4">
-                    <h2 class="text-center mb-4 fw-bold" style="font-family: 'Playfair Display', serif;">Sign Up</h2>
-                    <form id="signupForm" class="d-flex flex-column">
-                        <div class="mb-3">
-                            <label for="signUpEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control w-100" id="signUpEmail"
-                                placeholder="Enter your email" required>
+    <main class="flex-grow-1 d-flex flex-column justify-content-center">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-lg p-4">
+                        <h2 class="text-center mb-4 fw-bold" style="font-family: 'Playfair Display', serif;">Sign Up
+                        </h2>
+                        <form id="signupForm" class="d-flex flex-column">
+                            <div class="mb-3">
+                                <label for="signUpEmail" class="form-label">Email address</label>
+                                <input type="email" class="form-control w-100" id="signUpEmail"
+                                    placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signUpPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control w-100" id="signUpPassword"
+                                    placeholder="Enter password" required>
+                                <small class="form-text text-muted">Password must be at least 6 characters</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signUpConfirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control w-100" id="signUpConfirmPassword"
+                                    placeholder="Confirm password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">I agree to the terms and
+                                    conditions</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </form>
+                        <div class="alert mt-3" id="statusMessage" style="display: none;"></div>
+                        <div class="text-center mt-3">
+                            <a href="signin.html" style="color: grey;">Already have an account? Sign in</a>
                         </div>
-                        <div class="mb-3">
-                            <label for="signUpPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control w-100" id="signUpPassword"
-                                placeholder="Enter password" required>
-                            <small class="form-text text-muted">Password must be at least 6 characters</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="signUpConfirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control w-100" id="signUpConfirmPassword"
-                                placeholder="Confirm password" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">I agree to the terms and conditions</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                    </form>
-                    <div class="alert mt-3" id="statusMessage" style="display: none;"></div>
-                    <div class="text-center mt-3">
-                        <a href="signin.html" style="color: grey;">Already have an account? Sign in</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
 
     <!-- Footer -->
     <div id="loggedout-footer-container"></div>

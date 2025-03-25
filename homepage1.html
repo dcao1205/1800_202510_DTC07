@@ -24,40 +24,43 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <nav id="loggedout-header-container"></nav>
 
     <!-- welcome banner&call to action -->
-    <div class="px-4 pt-5 my-5 text-center border-bottom flex flex-col">
-        <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome to TextLibre</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">We're building a student-first platform designed to make buying and selling
-                second-hand textbooks easier, smarter, and
-                more seamless than ever. With a modern and simple user interface, we ensure that finding affordable
-                books or selling
-                your old ones is hassle-free.
+    <main class="flex-grow-1 d-flex flex-column justify-content-center">
+        <div class="px-4 pt-5 my-5 text-center border-bottom flex flex-col">
+            <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome to TextLibre</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">We're building a student-first platform designed to make buying and selling
+                    second-hand textbooks easier, smarter, and
+                    more seamless than ever. With a modern and simple user interface, we ensure that finding affordable
+                    books or selling
+                    your old ones is hassle-free.
 
-                Join us in creating a better way for students to connect, save money, and make the most of their
-                textbooks!</p>
-            <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <a href="signup.html">
-                    <button type="button" id="signup" class="btn btn-outline-secondary btn-lg px-4 mx-3"
-                    fdprocessedid="">Signup</button>
-                </a>
-                <a href="signin.html">
-                    <button type="button" id="login" class="btn btn-outline-secondary btn-lg px-4"
-                        fdprocessedid="itmq9n">Login</button>
-                </a>
+                    Join us in creating a better way for students to connect, save money, and make the most of their
+                    textbooks!</p>
+                <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
+                    <a href="signup.html">
+                        <button type="button" id="signup" class="btn btn-outline-secondary btn-lg px-4 mx-3"
+                            fdprocessedid="">Signup</button>
+                    </a>
+                    <a href="signin.html">
+                        <button type="button" id="login" class="btn btn-outline-secondary btn-lg px-4"
+                            fdprocessedid="itmq9n">Login</button>
+                    </a>
+                </div>
             </div>
-        </div>
-        <!-- <div class="overflow-hidden m-3 flex " style="max-height: 30vh;">
+            <!-- <div class="overflow-hidden m-3 flex " style="max-height: 30vh;">
             <div class="container px-5 m-3">
                 <img src="images\textbook.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image"
                     width="353" height="350" loading="lazy">
             </div>
         </div> -->
-    </div>
+        </div>
+    </main>
+
 
     <!-- Footer -->
     <div id="loggedout-footer-container"></div>
