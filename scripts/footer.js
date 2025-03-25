@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <!-- My Listings button -->
                 <div id="myListings" class="d-flex flex-column align-items-center">
-                    <a id="btn-home" href="#" class="text-white">
+                    <a id="btn-myListings" href="my_listings.html" class="text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="38"
                             height="38" stroke-width="2">
