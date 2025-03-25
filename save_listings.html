@@ -34,68 +34,9 @@
 
 </head>
 
-<body>
-
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Hamburger Menu Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navbar Brand -->
-            <span class="navbar-brand navTitle fs-1">TextLibre</span>
-
-            <!-- Collapsible Menu -->
-            <div class="collapse navbar-collapse fs-3" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Report</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Search Form -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-
-    </nav>
-
-    <!-- welcome banner&call to action -->
-    <!-- <div class="px-4 pt-5 my-5 text-center border-bottom flex flex-col">
-        <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome to TextLibre</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">We're building a student-first platform designed to make buying and selling
-                second-hand textbooks easier, smarter, and
-                more seamless than ever. With a modern and simple user interface, we ensure that finding affordable
-                books or selling
-                your old ones is hassle-free.
-
-                Join us in creating a better way for students to connect, save money, and make the most of their
-                textbooks!</p>
-            <div class="d-grid gap-10 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 mx-3" fdprocessedid="">Sign
-                    up</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4"
-                    fdprocessedid="itmq9n">Login</button>
-            </div>
-        </div>
-    </div> -->
+    <nav id="loggedin-header-container"></nav>
 
     <h2 class="text-center mb-4">Saved listings</h2>
     <div class="container my-5">
@@ -103,23 +44,20 @@
             <!-- Listings will be inserted here -->
         </div>
     </div>
-    
+
     <script type="module" src="scripts/retrieve_saved_listings.js"></script>
 
 
     <div id="footer-container"></div>
 
     <script type="module" src="scripts/footer.js"></script>
-    <!-- Link to scripts of your own -->
+    <script type="module" src="scripts/logged_in_header.js"></script>
     <!-- <script>
         document.getElementById("create-listing").addEventListener("click", function () {
             window.location.href = "create_listing.html";
         });
     </script> -->
     <!-- <script type="module" src="./scripts/get_listing.js"></script> -->
-
-
-
 </body>
 
 </html>
