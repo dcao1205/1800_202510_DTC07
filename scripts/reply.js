@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the back button
     const backButton = document.querySelector('.btn-outline-secondary');
     backButton.addEventListener('click', function () {
-        window.location.href = "view_message.html"; // Adjust this to your actual page name
+        window.history.back(); // AI help to find method
     });
 });

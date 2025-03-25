@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (sellerUsername) {
         toSellerInput.value = sellerUsername;
     }
+
+    // Add event listener to the back button
+    const backButton = document.querySelector('.btn-outline-secondary');
+    backButton.addEventListener('click', function () {
+        window.history.back(); // AI help to find method
+    });
 });
 
 document.getElementById('message').addEventListener('submit', async function (e) {
