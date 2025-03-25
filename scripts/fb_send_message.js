@@ -54,7 +54,6 @@ document.getElementById('message').addEventListener('submit', async function (e)
                 time: firebase.firestore.FieldValue.serverTimestamp()
             };
 
-
             // Send data to Firebase
             const docRef = await db.collection('messages').add(message);
             const result = docRef.id;
