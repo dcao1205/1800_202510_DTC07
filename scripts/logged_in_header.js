@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 firebase.auth().signOut().then(() => {
                     console.log("User logged out successfully.");
-                    window.location.href = "homepage1.html"; // Redirect to login page
+                    window.location.href = "index.html"; // Redirect to login page
                 }).catch((error) => {
                     console.error("Logout Error:", error);
                 });
