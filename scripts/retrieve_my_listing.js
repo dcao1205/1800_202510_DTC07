@@ -38,24 +38,45 @@ async function displayMyListings() {
             const listing = doc.data();
             const listingId = doc.id;
 
-            const cardHTML = `
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}" class="card-img-top" alt="Textbook Image">
-                        <div class="card-body">
-                            <h5 class="card-title">${listing.title}</h5>
-                            <p class="card-text">$${listing.price}</p>
-                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
-                        </div>
+            const listingElement = document.createElement("div");
+            listingElement.classList.add("col");
+            listingElement.id = `listing-${listingId}`;
+
+            listingElement.innerHTML = `
+                <div class="card h-100">
+                    <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}" class="card-img-top" alt="Textbook Image">
+                    <div class="card-body">
+                        <h5 class="card-title">${listing.title}</h5>
+                        <p class="card-text">$${listing.price}</p>
+                        <a href="textbook_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
+                        <button class="btn btn-danger delete-btn">Delete Listing</button>
                     </div>
                 </div>
             `;
 
-            listingsContainer.innerHTML += cardHTML;
+            listingsContainer.appendChild(listingElement);
+
+            // Attach event listener to delete button
+            listingElement.querySelector(".delete-btn").addEventListener("click", () => {
+                deleteListing(listingId, listing.title);
+            });
         });
 
     } catch (error) {
         console.error("Error retrieving saved listings:", error);
+    }
+}
+
+async function deleteListing(listingId, listingTitle) {
+    const confirmation = confirm(`Are you sure you want to delete "${listingTitle}"?`);
+    if (!confirmation) return;
+
+    try {
+        await db.collection("listings").doc(listingId).delete();
+        document.getElementById(`listing-${listingId}`).remove();
+        console.log(`Listing "${listingTitle}" deleted successfully`);
+    } catch (error) {
+        console.error("Error deleting listing:", error);
     }
 }
 
