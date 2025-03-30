@@ -22,6 +22,7 @@ function displayCardsDynamically(collection, searchText) {
                 var datePosted = doc.data().createdAt
                 var imageUrl = doc.data().imageUrl || "https://picsum.photos/250/250";
                 var listingId = doc.id;
+                var sellerUsername = doc.data().username;
 
                 let maxPrice = parseFloat(document.getElementById("priceFilter").value);
                 let selectedQualities = Array.from(document.querySelectorAll(".qualityFilter:checked"))
@@ -39,7 +40,8 @@ function displayCardsDynamically(collection, searchText) {
                         quality: quality,
                         datePosted: datePosted,
                         imageUrl: imageUrl,
-                        listingId: listingId
+                        listingId: listingId,
+                        sellerUsername: sellerUsername
                     });
                 }
             });
@@ -80,6 +82,9 @@ function displayCardsDynamically(collection, searchText) {
                 newcard.querySelector('.card-img-top').src = book.imageUrl;
                 newcard.querySelector('.btn-primary').href = `textbook_page.html?id=${book.listingId}`;
                 newcard.querySelector('.report-btn').dataset.listingId = book.listingId;
+                
+                let contactButton = newcard.querySelector('.create-message');
+                contactButton.dataset.sellerUsername = book.sellerUsername;
 
                 container.appendChild(newcard);
             });
@@ -109,3 +114,27 @@ document.querySelectorAll('input[name="sortOption"], input[name="sortDirection"]
 const searchQuery = getQueryParameter("query");
 
 displayCardsDynamically("listings", searchQuery);
+
+document.addEventListener('DOMContentLoaded', function () {
+    function attachEventListeners() {
+        document.querySelectorAll(".create-message").forEach(button => {
+            button.addEventListener("click", function () {
+                try {
+                    let username = button.dataset.sellerUsername; // Get username from dataset
+                    if (!username) {
+                        console.error("Seller username not found.");
+                        return;
+                    }
+
+                    localStorage.setItem("selectedSellerUsername", username);
+                    window.location.href = "create_message.html";
+                } catch (error) {
+                    console.error("Error processing username:", error);
+                    window.location.href = "create_message.html";
+                }
+            });
+        });
+    }
+
+    setTimeout(attachEventListeners, 1000);
+});
