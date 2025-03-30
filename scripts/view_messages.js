@@ -233,8 +233,8 @@ function openButtonEventListeners() {
     }
 }
 
+// Main function to handle message deletion
 async function deleteButton() {
-    // Get all checked checkboxes
     const checkedInputs = document.querySelectorAll('input[type="checkbox"]:checked');
 
     // Exit function if nothing selected
@@ -244,46 +244,153 @@ async function deleteButton() {
     }
 
     try {
-        const user = auth.currentUser;
-        const userId = user.uid;
+        const user = await getCurrentUser();
+        if (!user) return;
 
-        // Collect message IDs to delete. AI help.
+        // Find all selected messages
         const messageIdsToDelete = Array.from(checkedInputs).map(input => input.id);
+        const userData = await getUserData(user.uid);
+        if (!userData) return;
 
-        // Get the user document reference
-        const userDocRef = db.collection("users").doc(userId);
-        const userDoc = await userDocRef.get();
-        const userData = userDoc.data();
+        // Update the user's message list
+        await updateUserMessageList(user.uid, userData, messageIdsToDelete);
 
-        // Remove message IDs from user's receivedMessages array
-        const updatedReceivedMessages = userData.receivedMessages.filter(
-            messageId => !messageIdsToDelete.includes(messageId)
-        );
+        // Check and potentially delete messages from Firebase
+        await checkAndDeleteMessages(messageIdsToDelete, userData);
 
-        // Delete individual messages from messages collection
-        const deleteMessages = messageIdsToDelete.map(messageId => 
-            db.collection("messages").doc(messageId).delete()
-        );
+        // Update the UI
+        removeMessagesFromUI(messageIdsToDelete);
 
-        // Wait for all message deletions to complete
-        await Promise.all(deleteMessages);
+        alert(`${messageIdsToDelete.length} message(s) removed from your list successfully`);
 
-        // Update user document with new receivedMessages array
-        await userDocRef.update({
-            receivedMessages: updatedReceivedMessages
-        });
-
-        // Remove deleted messages from the UI
-        messageIdsToDelete.forEach(messageId => {
-            const messageElement = document.getElementById(messageId).closest('.message');
-            if (messageElement) {
-                messageElement.remove();
-            }
-        });
-
-        alert(`${messageIdsToDelete.length} message(s) deleted successfully`);
     } catch (error) {
-        console.error('Error deleting messages:', error);
+        console.error(error);
         alert('Failed to delete messages');
     }
+}
+
+// Get the current authenticated user
+async function getCurrentUser() {
+    const user = auth.currentUser;
+    if (!user) {
+        console.error("No user is logged in");
+        return null;
+    }
+    return user;
+}
+
+// Get the user document data from Firestore
+async function getUserData(userId) {
+    const userDocRef = db.collection("users").doc(userId);
+    const userDoc = await userDocRef.get();
+
+    if (!userDoc.exists) {
+        console.error("User document does not exist");
+        return null;
+    }
+
+    return userDoc.data();
+}
+
+// Update the user's message list (either sent or received)
+async function updateUserMessageList(userId, userData, messageIdsToDelete) {
+    // Determine if we're on the sent or received messages page
+    const isSentPage = document.getElementById('sentMessages') !== null;
+    const messageListField = isSentPage ? 'sentMessages' : 'receivedMessages';
+
+    if (!userData[messageListField]) {
+        console.error(`${messageListField} field is missing in user document`);
+        alert('User message data not found');
+        return false;
+    }
+
+    // Remove message IDs from user's message array
+    const updatedMessagesList = userData[messageListField].filter(
+        messageId => !messageIdsToDelete.includes(messageId)
+    );
+
+    // Update user document with new messages array
+    await db.collection("users").doc(userId).update({
+        [messageListField]: updatedMessagesList
+    });
+
+    return true;
+}
+
+// Check if messages are still referenced and delete if appropriate
+async function checkAndDeleteMessages(messageIdsToDelete, userData) {
+    const isSentPage = document.getElementById('sentMessages') !== null;
+
+    for (const messageId of messageIdsToDelete) {
+        try {
+            const messageInfo = await getMessageInfo(messageId);
+            if (!messageInfo) continue;
+
+            const otherUserId = isSentPage ? messageInfo.receiverId : messageInfo.senderId;
+            if (!otherUserId) {
+                await deleteMessage(messageId);
+                continue;
+            }
+
+            const isReferenced = await messageExists(
+                messageId,
+                otherUserId,
+                isSentPage ? 'receivedMessages' : 'sentMessages'
+            );
+
+            if (!isReferenced) {
+                await deleteMessage(messageId);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+// Get message information from Firestore
+async function getMessageInfo(messageId) {
+    const messageDoc = await db.collection("messages").doc(messageId).get();
+
+    if (!messageDoc.exists) {
+        console.warn(`Message with ID ${messageId} does not exist`);
+        return null;
+    }
+
+    return messageDoc.data();
+}
+
+// Check if a message is still referenced by another user
+async function messageExists(messageId, otherUserId, messageField) {
+    try {
+        const otherUserDoc = await db.collection("users").doc(otherUserId).get();
+
+        if (!otherUserDoc.exists) {
+            console.warn(`Other user document with ID ${otherUserId} does not exist`);
+            return false;
+        }
+
+        const otherUserData = otherUserDoc.data();
+        const otherUserMessages = otherUserData[messageField] || [];
+
+        return otherUserMessages.includes(messageId);
+    } catch (error) {
+        console.error(error);
+        return false; // Assume not referenced in case of error
+    }
+}
+
+// Delete a message from Firestore
+async function deleteMessage(messageId) {
+    await db.collection("messages").doc(messageId).delete();
+    console.log(`Message ${messageId} deleted from Firebase`);
+}
+
+// Remove message elements from the UI
+function removeMessagesFromUI(messageIdsToDelete) {
+    messageIdsToDelete.forEach(messageId => {
+        const messageElement = document.getElementById(messageId).closest('.message');
+        if (messageElement) {
+            messageElement.remove();
+        }
+    });
 }
