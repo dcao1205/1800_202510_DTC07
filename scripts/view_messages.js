@@ -153,29 +153,45 @@ function displayMessages(messages) {
         const messageElement = document.createElement('div'); // Container holding each message
         // Different styles depending on status
         if (message.read) {
-            messageElement.className = 'bg-success-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message'; // Read
+            messageElement.className = 'bg-success-subtle p-3 rounded-5 d-flex fs-5 my-3 message'; // Read
         } else {
-            messageElement.className = 'bg-primary-subtle p-3 align-items-center rounded-5 d-flex fs-5 my-3 message'; // New
+            messageElement.className = 'bg-primary-subtle p-3 rounded-5 d-flex fs-5 my-3 message'; // New
         }
+
         // Status (New or Read)
         const status = message.read ?
             `<span class="bg-success text-white p-2 rounded-3">Read</span>` : // If true
             `<span class="bg-primary text-white p-2 rounded-3">New</span>`; // If false
-        // Fill in message data -> AI help to use regular expressions in replace method.
+
+        // Fill in message data with improved layout
         messageElement.innerHTML = `
-            <input class="form-check-input me-3" type="checkbox" id="${message.id}">
-            ${status}
-            <span class="ms-3 me-2 fw-bold">From:</span>
-            <span class="fw-medium text-nowrap overflow-hidden">${message.from}</span>
-            <span class="ms-3 me-2 fw-bold">Date:</span>
-            <span class="fw-medium text-nowrap overflow-hidden">${message.time}</span>
-            <span class="ms-3 me-2 fw-bold">Subject:</span>
-            <span class="fw-medium text-nowrap overflow-hidden">${message.subject}</span>
-            <span><button id="${message.id}" type="button" class="ms-3 me-2 fw-bold open-btn" 
-                data-from="${message.from}" 
-                data-time="${message.time}" 
-                data-subject="${message.subject}" 
-                data-content="${message.content.replace(/"/g, '&quot;')}">Open</button></span>
+            <div class="d-flex align-items-center w-100">
+                <input class="form-check-input me-3 flex-shrink-0" type="checkbox" id="${message.id}">
+                <div class="flex-shrink-0 me-3">
+                    ${status}
+                </div>
+                <div class="d-flex flex-grow-1 flex-wrap overflow-hidden">
+                    <div class="d-flex me-3 flex-nowrap">
+                        <span class="fw-bold me-2">From:</span>
+                        <span class="fw-medium text-truncate">${message.from}</span>
+                    </div>
+                    <div class="d-flex me-3 flex-nowrap">
+                        <span class="fw-bold me-2">Date:</span>
+                        <span class="fw-medium text-truncate">${message.time}</span>
+                    </div>
+                    <div class="d-flex me-3 flex-nowrap">
+                        <span class="fw-bold me-2">Subject:</span>
+                        <span class="fw-medium text-truncate">${message.subject}</span>
+                    </div>
+                </div>
+                <div class="ms-auto flex-shrink-0">
+                    <button id="${message.id}" type="button" class="btn btn-outline-primary open-btn" 
+                        data-from="${message.from}" 
+                        data-time="${message.time}" 
+                        data-subject="${message.subject}" 
+                        data-content="${message.content.replace(/"/g, '&quot;')}">Open</button>
+                </div>
+            </div>
         `;
         messagesContainer.prepend(messageElement); // Newer messages to the top
     });
