@@ -43,16 +43,22 @@ async function displayMyListings() {
             listingElement.id = `listing-${listingId}`;
 
             listingElement.innerHTML = `
-                <div class="card h-100">
-                    <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}" class="card-img-top" alt="Textbook Image">
-                    <div class="card-body">
-                        <h5 class="card-title">${listing.title}</h5>
+                <div class="card h-100 w-100">
+                    <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}" 
+                    class="card-img-top" style="object-fit: cover; aspect-ratio: 1 / 1;"
+                    alt="Textbook Image">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                        <h5 class="card-title text-truncate">${listing.title}</h5>
                         <p class="card-text">$${listing.price}</p>
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
                         <a href="textbook_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
                         <button class="btn btn-danger delete-btn">Delete Listing</button>
                     </div>
                 </div>
-            `;
+            </div>
+        `;
 
             listingsContainer.appendChild(listingElement);
 
