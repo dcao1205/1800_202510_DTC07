@@ -4,7 +4,7 @@ quiz_bank = [
         "radical_meaning": "related to fire or heat",
         "question": "Which character uses 火 to represent something that burns?",
         "options": ["1. 長", "2. 這", "3. 沒", "4. 燒"],
-        "answer_index": 4
+        "answer_index": 3
     },
     {
         "radical": "氵",
