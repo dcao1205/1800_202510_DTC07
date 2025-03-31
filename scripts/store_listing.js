@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Show success message
                     alert('Listing created successfully!');
-                    form.reset();
                     document.getElementById('imagePreview').innerHTML = "";
+                    window.location.href = "my_listings.html";
                 }
             } catch (error) {
                 console.error('Error creating listing:', error);
