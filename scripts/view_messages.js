@@ -243,10 +243,6 @@ function openButtonEventListeners() {
             messageModal.show(); // uses that instance to display the modal
         });
     });
-
-    function deleteButton() {
-
-    }
 }
 
 // Main function to handle message deletion
