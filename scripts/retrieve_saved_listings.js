@@ -33,17 +33,23 @@ async function displaySavedListings() {
 
             const listing = listingDoc.data();
             const cardHTML = `
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="${listing.image || 'https://picsum.photos/250/250'}" class="card-img-top" alt="Textbook Image">
-                        <div class="card-body">
-                            <h5 class="card-title">${listing.title}</h5>
-                            <p class="card-text">$${listing.price}</p>
-                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
+                <div class="col d-flex">
+                    <div class="card h-100 w-100">
+                        <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}"
+                            class="card-img-top"
+                            style="object-fit: cover; aspect-ratio: 1 / 1;"
+                            alt="Textbook Image">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title text-truncate">${listing.title}</h5>
+                                <p class="card-text">$${listing.price}</p>
+                            </div>
+                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary mt-3">View Details</a>
                         </div>
                     </div>
                 </div>
             `;
+
 
             listingsContainer.innerHTML += cardHTML;
         });
