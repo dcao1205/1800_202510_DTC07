@@ -20,8 +20,8 @@ async function loadLatestListings() {
             const listingId = doc.id;
 
             const card = `
-                <div class="col">
-                    <div class="card h-100">
+                <div class="col d-flex">
+                    <div class="card h-100 w-100">
                         <img src="${listing.imageUrl || 'https://picsum.photos/250/250'}"
                         class="card-img-top object-fit-cover"
                         style="aspect-ratio: 1 / 1; width: 100%; height: auto;"
