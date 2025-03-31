@@ -81,8 +81,8 @@ document.getElementById('message').addEventListener('submit', async function (e)
             // Show success message
             alert('Message Sent!');
 
-            // Reset form
-            this.reset();
+            // Redirect back to last visited page
+            window.history.back();
         } catch (error) {
             console.error("Error adding or updating document: ", error);
             alert('Error sending message');
