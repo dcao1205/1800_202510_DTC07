@@ -17,20 +17,23 @@ async function displaySavedListings() {
             return;
         }
 
-        const savedListings = userDoc.data().savedListings;
+        let savedListings = userDoc.data().savedListings;
         const listingsContainer = document.getElementById("saved-listings-container");
 
         listingsContainer.innerHTML = ""; // Clear existing listings
 
-        savedListings.forEach(async (listingId) => {
+        let validListings = [];
+
+        for (const listingId of savedListings) {
             const listingRef = db.collection("listings").doc(listingId);
             const listingDoc = await listingRef.get();
 
             if (!listingDoc.exists) {
-                console.warn(`Listing ${listingId} does not exist.`);
-                return;
+                console.log(`Listing ${listingId} does not exist. Removing from saved listings.`);
+                continue;
             }
 
+            validListings.push(listingId);
             const listing = listingDoc.data();
             const cardHTML = `
                 <div class="col d-flex">
@@ -49,10 +52,13 @@ async function displaySavedListings() {
                     </div>
                 </div>
             `;
-
-
             listingsContainer.innerHTML += cardHTML;
-        });
+        }
+
+        // Update saved listings if any invalid ones were removed
+        if (validListings.length !== savedListings.length) {
+            await userRef.update({ savedListings: validListings });
+        }
 
     } catch (error) {
         console.error("Error retrieving saved listings:", error);
