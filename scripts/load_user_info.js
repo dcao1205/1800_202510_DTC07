@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('location').textContent = userData.location || '';
             document.getElementById('institution').textContent = userData.institution || '';
             document.getElementById('aboutme').textContent = userData.aboutme || '';
-            // document.getElementById('profileImage').src = userData.profileImage || 'default.png';
+            document.getElementById('profileImage').src = userData.profileImage || 'default.png';
         } catch (error) {
             console.error("Error loading user info:", error);
         }
