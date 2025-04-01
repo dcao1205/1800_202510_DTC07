@@ -36,6 +36,8 @@ async function displayListing() {
         document.getElementById("listing-description").innerText = listing.description || "No description available.";
         document.getElementById("listing-username").innerText = `Username: ${listing.username}` || "No description available.";
 
+        document.querySelector('.card-img-top').src = listing.imageUrl;
+
     } catch (error) {
         console.error("Error fetching listing:", error);
         document.getElementById("selected-listing").innerHTML = "<p>Error loading listing.</p>";

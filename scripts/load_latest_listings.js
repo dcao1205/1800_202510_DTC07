@@ -30,7 +30,7 @@ async function loadLatestListings() {
                         <div class="card-body">
                             <h5 class="card-title">${listing.title}</h5>
                             <p class="card-text">$${listing.price}</p>
-                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
+                            <a href="listing_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
