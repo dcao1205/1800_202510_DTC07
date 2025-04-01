@@ -44,6 +44,12 @@ document.getElementById('message').addEventListener('submit', async function (e)
             const username = userData.username;
             console.log("Username:", username);
 
+            const confirmUpdate = confirm("Are you sure you want to send the message?");
+            if (!confirmUpdate) {
+                console.log("User cancelled the update.");
+                return;
+            }
+
             const message = {
                 to: toSeller,
                 subject: subject,
@@ -74,6 +80,8 @@ document.getElementById('message').addEventListener('submit', async function (e)
                 await recipientDoc.ref.update({
                     receivedMessages: firebase.firestore.FieldValue.arrayUnion(result)
                 });
+
+
             } else {
                 console.error("Recipient not found");
             }
