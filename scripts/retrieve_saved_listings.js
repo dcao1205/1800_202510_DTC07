@@ -47,7 +47,7 @@ async function displaySavedListings() {
                                 <h5 class="card-title text-truncate">${listing.title}</h5>
                                 <p class="card-text">$${listing.price}</p>
                             </div>
-                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary mt-3">View Details</a>
+                            <a href="listing_page.html?id=${listingId}" class="btn btn-primary mt-3">View Details</a>
                         </div>
                     </div>
                 </div>
