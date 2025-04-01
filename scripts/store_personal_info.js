@@ -86,6 +86,16 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
+        const imageFile = document.getElementById('imageUpload').files[0];
+        let profileImage = "";
+
+        if (imageFile) {
+          const storageRef = firebase.storage().ref();
+          const imageRef = storageRef.child(`profileImages/${user.uid}/${imageFile.name}`);
+          await imageRef.put(imageFile);
+          profileImage = await imageRef.getDownloadURL();
+        }
+
         const userProfile = {
           username,
           name,
@@ -97,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
           emailhidding,
           sentMessages: [],
           receivedMessages: [],
+          profileImage,
           updatedAt: new Date()
         };
 
