@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         footer.innerHTML = `
 <footer class="text-center text-white mt-auto" style="background-color: #727980;">
     <nav class="container p-2">
-        <section class="d-flex justify-content-between">
+        <section class="d-flex justify-content-between mx-2">
             <!-- Home (Profile page) button -->
             <div id="home" class="d-flex flex-column align-items-center">
                 <a id="btn-home" href="homepage2.html" class="text-white">
