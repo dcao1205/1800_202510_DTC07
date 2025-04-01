@@ -25,3 +25,19 @@ main {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
+#saved-listings-container {
+        flex-grow: 1;
+        overflow-y: auto;
+        max-height: calc(100vh - 200px);
+        padding-bottom: 80px;
+    }
+
+#my-listings-container {
+     flex-grow: 1;
+     overflow-y: auto;
+     max-height: calc(100vh - 200px);
+     padding-bottom: 80px;
+ }
+
+ 
