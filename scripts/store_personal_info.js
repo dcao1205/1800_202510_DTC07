@@ -48,6 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       console.log("Submitting form...");
 
+      const confirmUpdate = confirm("Are you sure you want to update your profile?");
+      if (!confirmUpdate) {
+        console.log("User cancelled the update.");
+        return;
+      } 
+
       const submitButton = document.querySelector('.btn-submit');
       submitButton.innerHTML = 'Checking username...';
       submitButton.disabled = true;
@@ -112,4 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  
 });
+
