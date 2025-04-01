@@ -80,7 +80,7 @@ function displayCardsDynamically(collection, searchText) {
                 newcard.querySelector('.card-price').innerHTML = "$" + book.price;
                 newcard.querySelector('.card-quality').innerHTML = `Condition: ${book.quality}`;
                 newcard.querySelector('.card-img-top').src = book.imageUrl;
-                newcard.querySelector('.btn-primary').href = `textbook_page.html?id=${book.listingId}`;
+                newcard.querySelector('.btn-primary').href = `listing_page.html?id=${book.listingId}`;
                 newcard.querySelector('.report-btn').dataset.listingId = book.listingId;
                 
                 let contactButton = newcard.querySelector('.create-message');

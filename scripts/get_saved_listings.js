@@ -17,20 +17,23 @@ async function displaySavedListings() {
             return;
         }
 
-        const savedListings = userDoc.data().savedListings;
+        let savedListings = userDoc.data().savedListings;
         const listingsContainer = document.getElementById("saved-listings-container");
 
         listingsContainer.innerHTML = ""; // Clear existing listings
 
-        savedListings.forEach(async (listingId) => {
+        let validListings = [];
+
+        for (const listingId of savedListings) {
             const listingRef = db.collection("listings").doc(listingId);
             const listingDoc = await listingRef.get();
 
             if (!listingDoc.exists) {
-                console.warn(`Listing ${listingId} does not exist.`);
-                return;
+                console.log(`Listing ${listingId} does not exist. Removing from saved listings.`);
+                continue;
             }
 
+            validListings.push(listingId);
             const listing = listingDoc.data();
             const cardHTML = `
                 <div class="col d-flex">
@@ -44,15 +47,18 @@ async function displaySavedListings() {
                                 <h5 class="card-title text-truncate">${listing.title}</h5>
                                 <p class="card-text">$${listing.price}</p>
                             </div>
-                            <a href="textbook_page.html?id=${listingId}" class="btn btn-primary mt-3">View Details</a>
+                            <a href="listing_page.html?id=${listingId}" class="btn btn-primary mt-3">View Details</a>
                         </div>
                     </div>
                 </div>
             `;
-
-
             listingsContainer.innerHTML += cardHTML;
-        });
+        }
+
+        // Update saved listings if any invalid ones were removed
+        if (validListings.length !== savedListings.length) {
+            await userRef.update({ savedListings: validListings });
+        }
 
     } catch (error) {
         console.error("Error retrieving saved listings:", error);

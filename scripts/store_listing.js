@@ -1,7 +1,6 @@
 import { db, storage } from './firebase_cred.js';
 
 document.addEventListener('DOMContentLoaded', function () {
-
     let imageFile = null;
 
     document.getElementById('imageUpload').addEventListener('change', function (event) {
@@ -16,12 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementsByClassName('create')[0];
 
     if (form) {
-        console.log("form found")
-
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
-
-            console.log("here")
 
             const submitButton = document.querySelector('.btn-submit');
             const originalButtonText = submitButton.innerHTML;
@@ -29,8 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitButton.disabled = true;
 
             try {
-
-                console.log("saving")
+                console.log("saving");
                 const user = firebase.auth().currentUser;
                 const title = document.getElementById('title').value;
                 const author = document.getElementById('author').value;
@@ -38,12 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 const quality = document.getElementById('quality').value;
                 const description = document.getElementById('description').value;
 
+                // Validate price
+                if (isNaN(price) || price < 0) {
+                    alert("Price must be a non-negative number.");
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                    return;
+                }
+
                 let imageUrl = null;
                 if (imageFile) {
                     const storageRef = storage.ref(`listingImgs/${imageFile.name}`);
                     const snapshot = await storageRef.put(imageFile);
                     imageUrl = await snapshot.ref.getDownloadURL();
                 }
+
                 // Find the listing creator's username
                 const userDoc = await db.collection('users').doc(`${user.uid}`).get();
                 if (userDoc.exists) {
@@ -78,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     } else {
-        console.error("Form with ID 'create' not found");
+        console.error("Form with class 'create' not found");
     }
-
 });
