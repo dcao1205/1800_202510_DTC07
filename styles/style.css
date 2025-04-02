@@ -11,7 +11,7 @@
 .btn-outline-success {
     border-color: grey;
     color: grey;
-  }
+}
 
 .notification-item {
     display: flex;
@@ -44,22 +44,50 @@
     cursor: pointer;
     margin: 0 auto;
 }
+
 .image-upload img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .btn-submit {
     margin-bottom: 40px;
 }
 
-/* .selected {
-    width: 25px;
-    height: 25px;
-} */
+/* Make the header fixed */
+#loggedin-header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+/* Add padding to the body to account for the fixed header. Makes sure content does not get overlapped */
+body {
+    padding-top: 80px;
+}
+
+/* Make sure the footer stays at the bottom and doesn't overlap content */
 #footer-container {
-    margin-top: auto;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Add bottom padding to account for the footer */
+body {
+    padding-bottom: 60px;
+}
+
+/* Make sure the main content area can scroll properly */
+main {
+    overflow-y: auto;
 }
