@@ -47,6 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageUrl = await snapshot.ref.getDownloadURL();
                 }
 
+                const confirmUpdate = confirm("Are you sure you want to submit your listings?");
+                if (!confirmUpdate) {
+                    console.log("User cancelled the update.");
+                    return;
+                } 
+
                 // Find the listing creator's username
                 const userDoc = await db.collection('users').doc(`${user.uid}`).get();
                 if (userDoc.exists) {
