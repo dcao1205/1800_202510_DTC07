@@ -1,4 +1,4 @@
-import { auth } from './firebase_cred.js';
+import { auth, db } from './firebase_cred.js';
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Only update elements if they exist
             if (accountNameSmall) accountNameSmall.textContent = displayName;
             if (accountNameLarge) accountNameLarge.textContent = displayName;
+            fetchMessageCount();
         } else {
             console.log("No user signed in");
             window.location.href = "signin.html";
@@ -53,3 +54,76 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 });
+
+// Function to fetch message count from Firebase using async/await. AI Help
+async function fetchMessageCount() {
+    const messageCountElement = document.getElementById('messageCount');
+
+    // Display loading state
+    if (messageCountElement) {
+        messageCountElement.textContent = 'Loading messages...';
+    }
+
+    try {
+        // Get the current user
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+            throw new Error('User not authenticated');
+        }
+
+        // Get user ID
+        const userId = currentUser.uid;
+
+        // Reference to the user document in Firestore
+        const userDocRef = db.collection('users').doc(userId);
+
+        // Fetch the user document
+        const doc = await userDocRef.get();
+
+        if (!doc.exists) {
+            throw new Error('User document not found');
+        }
+
+        // Get the receivedMessages array
+        const userData = doc.data();
+        // Get array length (or 0 if array doesn't exist)
+        const count = (userData.receivedMessages || []).length;
+
+        // Update the UI with the message count
+        if (messageCountElement) {
+            messageCountElement.innerHTML = `You have <span>${count}</span> message(s).`;
+        }
+
+    } catch (error) {
+        console.error('Error fetching message count:', error);
+        if (messageCountElement) {
+            messageCountElement.textContent = error.message === 'User not authenticated'
+                ? 'Please sign in to view messages'
+                : 'Unable to load messages';
+        }
+    }
+}
+
+// Function to update the message count display
+function updateMessageCountDisplay(count) {
+    const messageCountElement = document.getElementById('messageCount');
+    if (messageCountElement) {
+        messageCountElement.textContent = `You have ${count} messages.`;
+    }
+}
+
+// Function to display error message
+function displayError(errorMessage) {
+    const messageCountElement = document.getElementById('messageCount');
+    if (messageCountElement) {
+        messageCountElement.textContent = `Error: ${errorMessage}`;
+    }
+}
+
+// Function to display loading state
+function displayLoading() {
+    const messageCountElement = document.getElementById('messageCount');
+    if (messageCountElement) {
+        messageCountElement.textContent = 'Loading messages...';
+    }
+}
