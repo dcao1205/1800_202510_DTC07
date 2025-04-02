@@ -270,6 +270,10 @@ async function deleteButton() {
         // Update the user's message list
         await updateUserMessageList(user.uid, userData, messageIdsToDelete);
 
+        // Confirm deletion
+        const confirmation = confirm('Are you sure you want to delete?');
+        if (!confirmation) return;
+
         // Check and potentially delete messages from Firebase
         await checkAndDeleteMessages(messageIdsToDelete, userData);
 
