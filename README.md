@@ -6,37 +6,41 @@ Summarize your project's purpose, problem solved, key features, user benefits, d
 
 Example:
 
-This client-side JavaScript web application provides real-time weather updates for cities worldwide. It simplifies accessing weather information through an intuitive mobile-first interface, allowing users to input a city name and receive data on temperature, humidity, and conditions.
+Our team, DTC-07, is developing a platform exclusively designed for students, offering enhanced features with a modern, simple user interface to make buying and selling second-hand textbooks easier.
 
-Developed for the [Course Name] course, applying User-Centred Design practices, agile project management processes, integrating a weather API, and Firebase backend services.
+Developed for the COMP 1800 course, applying User-Centred Design practices, agile project management processes, and Firebase backend services.
 
 ---
 
 ## Features
 
 Example:
-- Real-time weather updates for any city.
-- Responsive design for desktop and mobile.
-- Displays temperature, humidity, and weather conditions.
+- Create and customize a profile page
+- Adding/Deleting custom listings
+- Search for and filter/sort for a listing you want
+- Save listings to your account for later
+- Message the owner of a listing or delete a message you have already sent
+- View and respond to messages people have sent you
 
 ---
 
 ## Technologies Used
 
 Example:
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
 - **Backend**: Firebase for hosting
-- **Database**: Firestore
-- **API**: OpenWeatherMap API
+- **Database**: Firestore, Firebase Storage
 
 ---
 
 ## Usage
 
 Example:
-1. Open your browser and visit `http://localhost:3000`.
-2. Enter the name of the city in the search bar and press enter.
-3. View the weather information displayed on the screen.
+1. Open your browser and visit `https://comp1800-61585.web.app/`.
+2. Create an account and fill out user information according to instructions
+3. Type a search term in the search bar to find matching listings
+4. Click "contact seller" to message the seller
+5. Click the "Add" button in the navbar to add a custom listing
 
 ---
 
@@ -45,14 +49,59 @@ Example:
 Example:
 ```
 project-name/
-├── src/
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js
-│   └── components/
-├── package.json
+├── 404.html
+├── create_listing.html
+├── create_message.html
+├── edit_personal_info.html
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── homepage2.html
+├── index_former.html
+├── index.html
+├── listing_page.html
+├── listings.html
+├── my_listings.html
+├── other_user_info.html
 ├── README.md
-└── .gitignore
+├── reply_message.html
+├── save_listings.html
+├── scripts/
+│   ├── create_message.js
+│   ├── fb_send_message.js
+│   ├── fbsignin.js
+│   ├── fbsignup.js
+│   ├── firebase_cred.js
+│   ├── footer.js
+│   ├── get_listing_details.js
+│   ├── get_listing.js
+│   ├── get_my_listings.js
+│   ├── get_saved_listings.js
+│   ├── homepagescript.js
+│   ├── load_latest_listings.js
+│   ├── load_user_info.js
+│   ├── logged_in_header.js
+│   ├── logged_out_footer.js
+│   ├── logged_out_header.js
+│   ├── other_user_info.js
+│   ├── profile_header.js
+│   ├── reply.js
+│   ├── reports.js
+│   ├── save_listing.js
+│   ├── store_listing.js
+│   ├── store_personal_info.js
+│   ├── userHeader.js
+│   ├── view_messages.js
+│   └── viewSentMessages.js
+├── signin.html
+├── signup.html
+├── storage.rules
+├── styles/
+├── templates/
+├── user_info_page.html
+├── user_page_template.html
+├── view_message.html
+└── viewSentMessages.html
 ```
 
 ---
@@ -77,17 +126,17 @@ Example:
 ### Limitations
 
 Example:
-- Currently, the app only supports city-based weather searches.
-- Limited to basic weather parameters like temperature, humidity, and conditions.
-- The user interface can be further enhanced for accessibility.
+- Currently, the app does not support editing listings
+- No way to review a seller after a transaction
+- The user interface can be further enhanced for ease of use and accessbility.
 
 ### Future Work
 
 Example: 
-- Add support for location-based weather detection using GPS.
-- Implement additional weather parameters like wind speed and UV index.
-- Create a dark mode for better usability in low-light conditions.
-- Integrate user accounts for saving favorite locations.
+- Add support for editing listings
+- Add the ability to leave reviews on a seller's page
+- Read indicators on messages
+- Allow more school supplies than just textbooks to be sold on the site
 
 ---
 
