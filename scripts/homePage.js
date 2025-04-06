@@ -1,6 +1,8 @@
 import { auth, db } from './firebase_cred.js';
 
-// Wait for DOM to be fully loaded
+/**
+ * Waits for the DOM to load, then checks auth state and sets up logout handlers.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const accountNameSmall = document.getElementById("accountNameSmall");
     const accountNameLarge = document.getElementById("accountNameLarge");
@@ -22,7 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Check authentication state
+    /**
+     * Monitors Firebase authentication state and updates UI accordingly.
+     * @param {firebase.User|null} user - Currently signed-in user or null
+     */
     auth.onAuthStateChanged((user) => {
         if (user) {
             // User is signed in
@@ -41,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = "signin.html";
         }
     });
-
+    /**
+     * Signs out the current user and redirects to the sign-in page.
+     */
     function logoutUser() {
         auth.signOut()
             .then(() => {
@@ -55,7 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Function to fetch message count from Firebase using async/await. AI Help
+/**
+ * Fetches the number of messages received by the current user and updates the UI.
+ * @returns {Promise<void>}
+ */
 async function fetchMessageCount() {
     const messageCountElement = document.getElementById('messageCount');
 
@@ -104,7 +114,10 @@ async function fetchMessageCount() {
     }
 }
 
-// Function to update the message count display
+/**
+ * Updates the message count element with a given count.
+ * @param {number} count - Number of messages to display
+ */
 function updateMessageCountDisplay(count) {
     const messageCountElement = document.getElementById('messageCount');
     if (messageCountElement) {
@@ -112,7 +125,10 @@ function updateMessageCountDisplay(count) {
     }
 }
 
-// Function to display error message
+/**
+ * Displays a custom error message in the message count element.
+ * @param {string} errorMessage - Error message to display
+ */
 function displayError(errorMessage) {
     const messageCountElement = document.getElementById('messageCount');
     if (messageCountElement) {
@@ -120,7 +136,9 @@ function displayError(errorMessage) {
     }
 }
 
-// Function to display loading state
+/**
+ * Displays a loading message in the message count element.
+ */
 function displayLoading() {
     const messageCountElement = document.getElementById('messageCount');
     if (messageCountElement) {
