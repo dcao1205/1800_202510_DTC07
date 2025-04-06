@@ -75,7 +75,7 @@ project-name/
 │   ├── footer.js
 │   ├── getListingDetails.js
 │   ├── getListing.js
-│   ├── get_my_listings.js
+│   ├── getMyListings.js
 │   ├── get_saved_listings.js
 │   ├── homepagescript.js
 │   ├── load_latest_listings.js
