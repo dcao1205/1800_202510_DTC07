@@ -1,11 +1,5 @@
 import { auth, db } from './firebase_cred.js';
 
-/**
- * This script handles the user profile update functionality:
- * - Loads user info from Firestore and pre-fills the form
- * - Validates and submits updated info (including optional profile image)
- * - Saves the data back to Firestore under the user's document
- */
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector('.create');
 
@@ -50,11 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error fetching user data:", error);
     }
 
-    /**
-     * Submit handler for the user profile form.
-     * Validates inputs, checks username uniqueness, optionally uploads image,
-     * then saves updates to Firestore.
-     */
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       console.log("Submitting form...");
@@ -80,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const aboutme = document.getElementById('aboutme').value.trim();
         const emailhidding = document.getElementById('emailhidding').checked;
 
-        // Check if username is already taken (by someone else)
+
         const usernameQuery = await db.collection('users').where('username', '==', username).get();
         let usernameTaken = false;
 
@@ -97,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        // Handle optional profile image upload
         const imageFile = document.getElementById('imageUpload').files[0];
         let profileImage = "";
 
@@ -108,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
           profileImage = await imageRef.getDownloadURL();
         }
 
-        // Build user profile object
         const userProfile = {
           username,
           name,
@@ -136,9 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } catch (error) {
         console.error("Error updating profile:", error);
         alert("Error updating profile: " + error.message);
-
       } finally {
-        // Restore submit button state
         submitButton.innerHTML = 'Save';
         submitButton.disabled = false;
       }
