@@ -47,6 +47,33 @@ async function saveListing(listingId) {
 }
 
 /**
+ * Removes a listing from the user's saved listings
+ * @param {string} listingId - The ID of the listing to remove
+ */
+async function deleteSavedListing(listingId) {
+    const user = auth.currentUser;
+    if (!user) {
+        alert("You need to be logged in to remove saved listings.");
+        return;
+    }
+
+    const userRef = db.collection("users").doc(user.uid);
+    try {
+        const userDoc = await userRef.get();
+        let savedListings = userDoc.exists ? userDoc.data().savedListings || [] : [];
+
+        // Filter out the listing to be deleted
+        const updatedListings = savedListings.filter(id => id !== listingId);
+
+        await userRef.update({ savedListings: updatedListings });
+        alert("Listing removed from saved listings.");
+    } catch (error) {
+        console.error("Error deleting listing:", error);
+        alert("Failed to remove listing.");
+    }
+}
+
+/**
  * Retrieves the listing ID from URL query parameters
  * @returns {string|null} - The listing ID or null if not found
  */
@@ -59,25 +86,21 @@ function getListingId() {
 }
 
 /**
- * Sets up click event listener for save listing button
- * - Gets current listing ID from URL
- * - Attaches click handler to save button
+ * Sets up click event listeners for save and delete buttons
  */
-function setupSaveButton() {
-    // Get save button element from DOM
-    const button = document.getElementById("save-listing2");
-    
-    // Get listing ID from URL
-    const listingId = getListingId(); // Replace this with the actual listing ID
+function setupSaveAndDeleteButtons() {
+    const saveButton = document.getElementById("save-listing2");
+    const deleteButton = document.getElementById("delete-listing2");
+    const listingId = getListingId();
 
-    // If button exists, add click event listener
-    if (button) {
-        button.addEventListener("click", () => {
-            // Call saveListing function when clicked
-            saveListing(listingId);
-        });
+    if (saveButton) {
+        saveButton.addEventListener("click", () => saveListing(listingId));
+    }
+
+    if (deleteButton) {
+        deleteButton.addEventListener("click", () => deleteSavedListing(listingId));
     }
 }
 
-// Set up save button when DOM content is loaded
-document.addEventListener("DOMContentLoaded", setupSaveButton);
+// Run setup when page is ready
+document.addEventListener("DOMContentLoaded", setupSaveAndDeleteButtons);
