@@ -1,5 +1,3 @@
-import { db } from './firebase_cred.js';
-
 document.addEventListener('DOMContentLoaded', function () {
     // Get the message button element
     const messageButton = document.getElementById("create-message");
@@ -11,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let username = "";
 
+            // Check if username element exists
             if (usernameElement) {
                 const fullText = usernameElement.textContent || usernameElement.innerText;
                 console.log("Full text content:", fullText);
@@ -33,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Setting localStorage with value:", username);
             localStorage.setItem("selectedSellerUsername", username);
 
+            // Navigate to the message creation page
             window.location.href = "createMessage.html";
         } catch (error) {
             console.error("Error processing username:", error);
