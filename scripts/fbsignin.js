@@ -6,6 +6,8 @@ import { auth } from './firebase_cred.js';
  * - Authenticates user with email/password
  * - Redirects to home page on success
  * - Displays error messages on failure
+ *
+ * @param {Event} e - The form submission event
  */
 document.getElementById('loginForm').addEventListener('submit', function (e) {
     // Prevent default form submission behavior
@@ -53,10 +55,8 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 });
 
 /**
- * Handles "Forgot Password" click event
- * - Validates email input exists
- * - Sends password reset email
- * - Displays success/error messages
+ * Sends a password reset email when "Forgot Password" is clicked.
+ * @param {Event} e - The click event on the forgot password button
  */
 document.getElementById('forgotPassword').addEventListener('click', function (e) {
     // Prevent default anchor behavior
@@ -76,7 +76,7 @@ document.getElementById('forgotPassword').addEventListener('click', function (e)
     // Attempt to send password reset email
     auth.sendPasswordResetEmail(email)
         .then(() => {
-            // Success handler
+            // Show success message
             const errorMessage = document.getElementById('errorMessage');
             
             // Change styling to indicate success
@@ -85,7 +85,7 @@ document.getElementById('forgotPassword').addEventListener('click', function (e)
             errorMessage.style.display = "block";
         })
         .catch((error) => {
-            // Error handler
+            // Show error message
             const errorMessage = document.getElementById('errorMessage');
             
             // Maintain error styling
@@ -96,9 +96,8 @@ document.getElementById('forgotPassword').addEventListener('click', function (e)
 });
 
 /**
- * Authentication state observer
- * - Redirects authenticated users to home page
- * - Maintains session consistency
+ * Automatically redirects if user is already signed in.
+ * @param {firebase.User} user - The currently signed-in user
  */
 auth.onAuthStateChanged((user) => {
     // Check if user is already authenticated
