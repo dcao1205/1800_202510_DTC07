@@ -34,17 +34,23 @@
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
+    <!-- Main listing content -->
     <div class="container my-5">
+        <!-- Back button to return to listings page -->
         <a href="listings.html">
             <button class="btn btn-outline-secondary d-inline-flex align-items-center mb-2" type="button">
                 Back
             </button>
         </a>
+
+        <!-- Listing display card -->
         <div class="row row-cols-1 row-cols-md-1 g-4">
             <div class="col">
                 <div class="card h-100">
+                    <!-- Image placeholder (replaced dynamically) -->
                     <img src="https://picsum.photos/500/500" class="card-img-top" alt="Textbook Image">
                     <div class="card-body">
+                        <!-- Listing details (populated dynamically via JS) -->
                         <h4 id="listing-title">Loading...</h4>
                         <p class="card-text" id="listing-author">Author: Loading...</p>
                         <p class="card-text" id="listing-price">Price: Loading...</p>
@@ -52,10 +58,12 @@
                         <p class="card-text" id="listing-description">Description: Loading...</p>
                         <p class="card-text" id="listing-username">Username: Loading...</p>
 
+                        <!-- Contact seller button (leads to message creation) -->
                         <button id="create-message" class="btn btn-outline-secondary d-inline-flex align-items-center"
                             type="button">
                             Contact Seller
                         </button>
+                        <!-- Save listing button -->
                         <button id="save-listing2" class="btn btn-outline-secondary d-inline-flex align-items-center"
                             type="button">
                         Save listing
@@ -66,7 +74,10 @@
         </div>
     </div>
 
+    <!-- Footer container (loaded dynamically) -->
     <div id="footer-container"></div>
+
+    <!-- Script modules for dynamic content and interaction -->
     <script type="module" src="scripts/getListingDetails.js"></script>
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="scripts/loggedInHeader.js"></script>

@@ -33,6 +33,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    <!-- Dynamic navigation bar for logged-in user -->
     <nav id="loggedin-header-container"></nav>
 
     <!-- welcome banner&call to action -->
@@ -47,11 +48,13 @@
             </div>
         </div>
     </main>
+    <!-- Dynamic message count for the user -->
     <div>
         <h1 class="fw-bold text-[40px] px-10 py-3 text-center" id="messageCount">
             You have ${} messages.</h1>
     </div>
 
+    <!-- Search bar for finding listings -->
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-md-4 col-lg-6">
@@ -67,6 +70,7 @@
         </div>
     </div>
 
+    <!-- Latest listings section (content inserted dynamically) -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Textbooks You May Be Interested In</h2>
         <div id="latest-listings-container" class="row row-cols-1 row-cols-sm-2 g-4 px-3">
@@ -79,6 +83,7 @@
     <!-- Footer -->
     <div id="footer-container" class="mt-auto"></div>
 
+    <!-- Script modules for dynamic behavior and rendering -->
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="scripts/homePage.js"></script>
     <script type="module" src="scripts/userHeader.js"></script>
