@@ -76,7 +76,7 @@ function createMessageModal() {
         localStorage.setItem("selectedMessageId", messageId);
 
         // Navigate to reply page
-        window.location.href = "reply_message.html";
+        window.location.href = "replyMessage.html";
     });
 }
 

@@ -50,22 +50,22 @@ Example:
 ```
 project-name/
 ├── 404.html
-├── create_listing.html
-├── create_message.html
-├── edit_personal_info.html
+├── createListing.html
+├── createMessage.html
+├── editPersonalInfo.html
 ├── firebase.json
 ├── firestore.indexes.json
 ├── firestore.rules
-├── homepage2.html
-├── index_former.html # MOVED
+├── homePage.html
+├── indexFormer.html # MOVED
 ├── index.html
 ├── listing_page.html
 ├── listings.html
-├── my_listings.html
-├── other_user_info.html # MOVED
+├── myListings.html
+├── otherUserInfo.html # MOVED
 ├── README.md
-├── reply_message.html
-├── save_listings.html
+├── replyMessage.html
+├── saveListings.html
 ├── scripts/
 │   ├── createMessage.js
 │   ├── sendMessage.js
@@ -98,9 +98,9 @@ project-name/
 ├── storage.rules
 ├── styles/
 ├── templates/
-├── user_info_page.html
-├── user_page_template.html
-├── view_message.html
+├── userInfoPage.html
+├── userPageTemplate.html #Moved
+├── viewMessage.html
 └── viewSentMessages.html
 ```
 

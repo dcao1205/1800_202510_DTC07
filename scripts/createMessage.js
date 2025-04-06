@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Setting localStorage with value:", username);
             localStorage.setItem("selectedSellerUsername", username);
 
-            window.location.href = "create_message.html";
+            window.location.href = "createMessage.html";
         } catch (error) {
             console.error("Error processing username:", error);
 
-            window.location.href = "create_message.html";
+            window.location.href = "createMessage.html";
         }
     });
 });

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('./templates/logged_out_header.html')
+    fetch('./templates/loggedOutHeader.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('loggedout-header-container').innerHTML = data;

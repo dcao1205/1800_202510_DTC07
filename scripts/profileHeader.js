@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem("selectedMessageSubject", subject);
                 
                 // Navigate to the reply page
-                window.location.href = "reply_message.html";
+                window.location.href = "replyMessage.html";
             } else {
                 console.error("Could not find username in the message");
             }
