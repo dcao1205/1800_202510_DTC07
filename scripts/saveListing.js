@@ -1,8 +1,14 @@
 import { auth, db } from './firebase_cred.js';
 
-// Function to save listing under user UID
+/**
+ * Saves a listing ID to the current user's savedListings array in Firestore.
+ * Prevents duplicates and handles auth validation.
+ * @param {string} listingId - The ID of the listing to be saved
+ * @returns {Promise<void>}
+ */
 async function saveListing(listingId) {
     const user = auth.currentUser;
+    // Ensure user is logged in
     if (!user) {
         alert("You need to be logged in to save listings.");
         return;
@@ -27,14 +33,19 @@ async function saveListing(listingId) {
     }
 }
 
-// Function to retrieve the listing ID from the URL
+/**
+ * Retrieves the current listing ID from the page's URL.
+ * @returns {string|null} The listing ID if found, otherwise null.
+ */
 function getListingId() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id");
 }
 
-
-// Function to attach event listener to button
+/**
+ * Attaches a click event listener to the save button.
+ * When clicked, it triggers saving the listing for the current user.
+ */
 function setupSaveButton() {
     const button = document.getElementById("save-listing2");
     const listingId = getListingId(); // Replace this with the actual listing ID

@@ -8,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         // Insert the fetched HTML into the designated header container
         document.getElementById('loggedout-header-container').innerHTML = data;
-        // Attach event listeners after the footer is loaded
-        // attachFooterEventListeners();
       });
 });
 
-// function attachFooterEventListeners() {
-
-// }
