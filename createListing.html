@@ -33,6 +33,7 @@
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
+    <!-- Main content container -->
     <div class="container mt-4">
         <h2 class="text-center">Create Listing</h2>
 
@@ -71,6 +72,7 @@
             <button type="submit" class="btn btn-primary w-100 btn-submit">Submit Listing</button>
         </form>
     </div>
+    <!-- Image preview script (displays image before upload) -->
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const file = event.target.files[0];
@@ -88,7 +90,6 @@
     <div id="footer-container"></div>
 
     <!-- Link to scripts of your own -->
-    <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="./scripts/storeListing.js"></script>
     <script type="module" src="./scripts/footer.js"></script>
     <script type="module" src="scripts/loggedInHeader.js"></script>
