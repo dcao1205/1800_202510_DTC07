@@ -1,6 +1,11 @@
+/**
+ * Loads the logged-out footer into the #loggedout-footer-container element on page load.
+ * Includes navigation buttons: Home, Sign up, and Login.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const footer = document.getElementById('loggedout-footer-container');
 
+    // Only insert footer HTML if the container exists
     if (footer) {
         footer.innerHTML = `
             <div class="my-0 w-100">

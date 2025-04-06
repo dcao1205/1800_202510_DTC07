@@ -1,5 +1,9 @@
 import { auth, db } from './firebase_cred.js';
 
+/**
+ * Initializes message button and navigation behavior once DOM is loaded.
+ * Checks user auth status and loads messages on demand.
+ */
 document.addEventListener('DOMContentLoaded', async function () {
     // Get all navigation buttons
     const navButtons = document.querySelectorAll('.nav-btn');
@@ -16,7 +20,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
-    // Replace default homepage with message page when the message button is clicked
+    /**
+     * Handles click on "Messages" button — fetch and display user's received messages.
+     */
     messageBtn.addEventListener('click', async function () {
         const user = auth.currentUser;
 
@@ -69,7 +75,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
-// Function to display messages in the UI
+/**
+ * Displays an array of message objects in the message section UI.
+ * @param {Array<Object>} messages - List of messages to display
+ */
 function displayMessages(messages) {
     const messagesContainer = document.getElementById('change');
 
@@ -120,7 +129,10 @@ function displayMessages(messages) {
     messagesContainer.appendChild(messagesHeader);
 }
 
-// Button functionality for "Open"
+/**
+ * Handles dynamic "Open" button behavior in each message block.
+ * Stores sender and subject in localStorage for reply page use.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function(event) {
         // Check if the clicked element is an "Open" button
