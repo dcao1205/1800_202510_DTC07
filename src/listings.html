@@ -35,11 +35,12 @@
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
-
+    <!-- Modal for reporting a listing -->
     <div id="reportModal" class="container p-4 border rounded shadow bg-white"
         style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; z-index: 1050;">
         <h5 class="mb-3">Report Listing</h5>
 
+        <!-- Reason dropdown -->
         <label for="reportReason" class="form-label">Reason:</label>
         <select id="reportReason" class="form-select">
             <option value="">Select a reason</option>
@@ -48,15 +49,18 @@
             <option value="Scam">Scam</option>
         </select>
 
+        <!-- Additional details -->
         <label for="reportDetails" class="form-label mt-3">Details:</label>
         <textarea id="reportDetails" class="form-control" rows="3" placeholder="Provide additional details"></textarea>
 
+        <!-- Modal buttons -->
         <div class="d-flex justify-content-end mt-3">
             <button id="reportSubmit" class="btn btn-danger me-2">Submit</button>
             <button id="reportClose" class="btn btn-secondary">Cancel</button>
         </div>
     </div>
 
+    <!-- Main container for listings page -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Search Results</h2>
 
@@ -72,9 +76,11 @@
             </button>
         </div>
 
+        <!-- Filter section (collapsible) -->
         <div class="collapse mt-3" id="filterSection">
             <div class="card card-body">
                 <h5>Filter by:</h5>
+                <!-- Max price filter -->
                 <div class="mb-2">
                     <label for="priceFilter" class="form-label">Max Price:</label>
                     <select id="priceFilter" class="form-select">
@@ -85,6 +91,7 @@
                         <option value="100">$100</option>
                     </select>
                 </div>
+                <!-- Condition filter checkboxes -->
                 <div class="mb-3">
                     <h6>Condition:</h6>
                     <div class="form-check">
@@ -105,6 +112,7 @@
                         <label class="form-check-label" for="qualityWorn">Worn</label>
                     </div>
                 </div>
+                <!-- Apply filter button -->
                 <button class="btn btn-success" id="applyFilters">Apply Filters</button>
             </div>
         </div>
@@ -139,10 +147,11 @@
             </div>
         </div>
 
+        <!-- Container to dynamically load listing cards -->
         <div id="listings-go-here" class="row row-cols-1 row-cols-md-2 g-4">
         </div>
     </div>
-
+    <!-- Template for rendering each listing card -->
     <template id="bookCardTemplate">
         <div class="col">
             <div class="card h-100">
@@ -162,8 +171,10 @@
     </template>
     </main>
 
+    <!-- Footer section -->
     <div id="footer-container"></div>
 
+    <!-- JavaScript modules -->
     <script type="module" src="scripts/footer.js"></script>
     <script type="module" src="./scripts/getListing.js"></script>
     <script type="module" src="scripts/loggedInHeader.js"></script>

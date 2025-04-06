@@ -37,25 +37,31 @@
     <div class="container mt-4">
         <h2 class="text-center">Create Listing</h2>
 
+        <!-- Form for creating a listing -->
         <form class="create">
+            <!-- Image upload section -->
             <div class="mb-3 text-center">
                 <label for="imageUpload" class="image-upload" id="imagePreview">
                     <span>Upload Image</span>
                 </label>
                 <input type="file" id="imageUpload" accept="image/*" class="d-none">
             </div>
+            <!-- Text input for title -->
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" required>
             </div>
+            <!-- Text input for author -->
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" id="author" required>
             </div>
+            <!-- Numeric input for price -->
             <div class="mb-3">
                 <label for="price" class="form-label">Price ($)</label>
                 <input type="number" class="form-control" id="price" required>
             </div>
+            <!-- Dropdown for quality/condition -->
             <div class="mb-3">
                 <label for="quality" class="form-label">Quality</label>
                 <select class="form-control" id="quality">
@@ -65,10 +71,12 @@
                     <option>Worn</option>
                 </select>
             </div>
+            <!-- Optional description text area -->
             <div class="mb-3">
                 <label for="description" class="form-label">Description (Optional)</label>
                 <textarea class="form-control" id="description" rows="3"></textarea>
             </div>
+            <!-- Submit button -->
             <button type="submit" class="btn btn-primary w-100 btn-submit">Submit Listing</button>
         </form>
     </div>
