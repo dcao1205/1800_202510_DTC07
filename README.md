@@ -57,12 +57,12 @@ project-name/
 ├── firestore.indexes.json
 ├── firestore.rules
 ├── homepage2.html
-├── index_former.html
+├── index_former.html # MOVED
 ├── index.html
 ├── listing_page.html
 ├── listings.html
 ├── my_listings.html
-├── other_user_info.html
+├── other_user_info.html # MOVED
 ├── README.md
 ├── reply_message.html
 ├── save_listings.html
@@ -81,17 +81,17 @@ project-name/
 │   ├── loadLatestListings.js
 │   ├── loadUserInfo.js
 │   ├── loggedInHeader.js
-│   ├── logged_out_footer.js
-│   ├── logged_out_header.js
-│   ├── other_user_info.js
-│   ├── profile_header.js
+│   ├── loggedOutFooter.js
+│   ├── loggedOutHeader.js
+│   ├── otherUserInfo.js #MOVED
+│   ├── profileHeader.js
 │   ├── reply.js
 │   ├── reports.js
-│   ├── save_listing.js
-│   ├── store_listing.js
-│   ├── store_personal_info.js
+│   ├── saveListing.js
+│   ├── storeListing.js
+│   ├── storePersonalInfo.js
 │   ├── userHeader.js
-│   ├── view_messages.js
+│   ├── viewMessages.js
 │   └── viewSentMessages.js
 ├── signin.html
 ├── signup.html
