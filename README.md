@@ -70,7 +70,7 @@ project-name/
 │   ├── createMessage.js
 │   ├── sendMessage.js
 │   ├── fbSignin.js
-│   ├── fbsignup.js
+│   ├── fbSignup.js
 │   ├── firebase_cred.js
 │   ├── footer.js
 │   ├── get_listing_details.js
