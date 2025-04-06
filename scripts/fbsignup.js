@@ -41,7 +41,7 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
             console.log("User registered:", userCredential.user);
 
             setTimeout(() => {
-                window.location.href = "homepage2.html";
+                window.location.href = "homePage.html";
             }, 2000);
         })
         .catch((error) => {
@@ -56,6 +56,6 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("User already signed in:", user);
-        window.location.href = "edit_personal_info.html";
+        window.location.href = "editPersonalInfo.html";
     }
 });

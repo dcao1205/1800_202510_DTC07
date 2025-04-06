@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
             // Successful login
             console.log("User signed in:", userCredential.user);
             sessionStorage.setItem('userId', user.uid);
-            window.location.href = "homepage2.html";
+            window.location.href = "homePage.html";
         })
         .catch((error) => {
             // Handle errors
@@ -62,6 +62,6 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("User already signed in:", user);
         sessionStorage.setItem('userId', user.uid);
-        window.location.href = "homepage2.html";
+        window.location.href = "homePage.html";
     }
 });

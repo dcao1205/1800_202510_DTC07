@@ -53,7 +53,7 @@ async function displayMyListings() {
                         <p class="card-text">$${listing.price}</p>
                     </div>
                     <div class="d-grid gap-2 mt-3">
-                        <a href="listing_page.html?id=${listingId}" class="btn btn-primary">View Details</a>
+                        <a href="listingPage.html?id=${listingId}" class="btn btn-primary">View Details</a>
                         <button class="btn btn-danger delete-btn">Delete Listing</button>
                     </div>
                 </div>

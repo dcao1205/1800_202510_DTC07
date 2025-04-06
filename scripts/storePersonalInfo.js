@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         form.reset();
 
         // Redirect to homepage after updating profile
-        window.location.href = "homepage2.html";
+        window.location.href = "homePage.html";
 
       } catch (error) {
         console.error("Error updating profile:", error);

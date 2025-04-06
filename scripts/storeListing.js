@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Show success message and redirect
                     alert('Listing created successfully!');
                     document.getElementById('imagePreview').innerHTML = "";
-                    window.location.href = "my_listings.html";
+                    window.location.href = "myListings.html";
                 }
             } catch (error) {
                 // Handle any errors that occur during the process

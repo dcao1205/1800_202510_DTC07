@@ -99,7 +99,7 @@ function displayCardsDynamically(collection, searchText) {
                 newcard.querySelector('.card-price').innerHTML = "$" + book.price;
                 newcard.querySelector('.card-quality').innerHTML = `Condition: ${book.quality}`;
                 newcard.querySelector('.card-img-top').src = book.imageUrl;
-                newcard.querySelector('.btn-primary').href = `listing_page.html?id=${book.listingId}`;
+                newcard.querySelector('.btn-primary').href = `listingPage.html?id=${book.listingId}`;
                 newcard.querySelector('.report-btn').dataset.listingId = book.listingId;
                 
                 // Set up contact button with seller username
@@ -169,10 +169,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Store username and navigate to message page
                     localStorage.setItem("selectedSellerUsername", username);
-                    window.location.href = "create_message.html";
+                    window.location.href = "createMessage.html";
                 } catch (error) {
                     console.error("Error processing username:", error);
-                    window.location.href = "create_message.html";
+                    window.location.href = "createMessage.html";
                 }
             });
         });

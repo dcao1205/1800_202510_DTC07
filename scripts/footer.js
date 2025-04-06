@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <section class="d-flex justify-content-between mx-2">
             <!-- Home (Profile page) button -->
             <div id="home" class="d-flex flex-column align-items-center">
-                <a id="btn-home" href="homepage2.html" class="text-white">
+                <a id="btn-home" href="homePage.html" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
                         class="bi bi-house-fill" viewBox="0 0 16 16">
                         <path
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <!-- My Listings button -->
             <div id="myListings" class="d-flex flex-column align-items-center">
-                <a id="btn-myListings" href="my_listings.html" class="text-white">
+                <a id="btn-myListings" href="myListings.html" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="28"
                         height="28" stroke-width="2">
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <!-- Add listing button -->
             <div id="create-listing" class="d-flex flex-column align-items-center">
-                <a id="btn-add" href="create_listing.html" class="text-white">
+                <a id="btn-add" href="createListing.html" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="28"
                         height="28" stroke-width="2">
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <!-- Message button (previously notification) -->
             <div id="notification-bell" class="d-flex flex-column align-items-center">
-                <a id="btn-messages" href="view_message.html" class="text-white">
+                <a id="btn-messages" href="viewMessage.html" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" 
                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
                         width="28" height="28" stroke-width="2"> 
