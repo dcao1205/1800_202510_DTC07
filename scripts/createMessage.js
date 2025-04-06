@@ -1,5 +1,8 @@
 import { db } from './firebase_cred.js';
 
+/**
+ * Sets up click handler to extract username and redirect to message page.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     // Get the message button element
     const messageButton = document.getElementById("create-message");

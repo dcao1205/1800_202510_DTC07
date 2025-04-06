@@ -1,8 +1,13 @@
 import { auth, db } from './firebase_cred.js';
 
-// Function to fetch and display saved listings
+/**
+ * Fetches and displays the user's saved listings from Firestore.
+ * Cleans up invalid listing references if some have been deleted.
+ * @returns {Promise<void>}
+ */
 async function displaySavedListings() {
     const user = auth.currentUser;
+    // Check if user is logged in
     if (!user) {
         console.error("User not logged in.");
         return;
@@ -12,6 +17,7 @@ async function displaySavedListings() {
 
     try {
         const userDoc = await userRef.get();
+        // Exit if no saved listings found
         if (!userDoc.exists || !userDoc.data().savedListings) {
             console.log("No saved listings found.");
             return;
@@ -24,10 +30,12 @@ async function displaySavedListings() {
 
         let validListings = [];
 
+        // Loop through each saved listing ID
         for (const listingId of savedListings) {
             const listingRef = db.collection("listings").doc(listingId);
             const listingDoc = await listingRef.get();
 
+            // Skip and log if listing no longer exists
             if (!listingDoc.exists) {
                 console.log(`Listing ${listingId} does not exist. Removing from saved listings.`);
                 continue;
@@ -35,6 +43,7 @@ async function displaySavedListings() {
 
             validListings.push(listingId);
             const listing = listingDoc.data();
+            // Build and insert listing card HTML
             const cardHTML = `
                 <div class="col d-flex">
                     <div class="card h-100 w-100">
@@ -55,7 +64,7 @@ async function displaySavedListings() {
             listingsContainer.innerHTML += cardHTML;
         }
 
-        // Update saved listings if any invalid ones were removed
+        // If any invalid listings were removed, update the saved listings array
         if (validListings.length !== savedListings.length) {
             await userRef.update({ savedListings: validListings });
         }
@@ -65,7 +74,10 @@ async function displaySavedListings() {
     }
 }
 
-// Run function when user is authenticated
+/**
+ * Displays saved listings once the user is authenticated.
+ * @param {firebase.User|null} user - The currently signed-in user
+ */
 auth.onAuthStateChanged((user) => {
     if (user) {
         displaySavedListings();

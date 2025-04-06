@@ -1,14 +1,20 @@
 import { auth, db } from './firebase_cred.js';
 
-// Function to fetch and display saved listings
+/**
+ * Fetches and displays listings created by the currently signed-in user.
+ * If user is not logged in or no listings are found, appropriate messages are shown.
+ * @returns {Promise<void>}
+ */
 async function displayMyListings() {
     const user = auth.currentUser;
+    // Check if user is logged in
     if (!user) {
         console.error("User not logged in.");
         return;
     }
 
     try {
+        // Get user document to retrieve their username
         const userDoc = await db.collection("users").doc(user.uid).get();
         if (!userDoc.exists) {
             console.error("User document not found.");
@@ -21,7 +27,7 @@ async function displayMyListings() {
             return;
         }
 
-
+        // Query Firestore for listings by this username
         const listingsQuery = await db.collection("listings")
             .where("username", "==", currentUsername)
             .get();
@@ -29,15 +35,18 @@ async function displayMyListings() {
         const listingsContainer = document.getElementById("my-listings-container"); // or rename it if you want
         listingsContainer.innerHTML = ""; // Clear old results
 
+        // If no listings found, show messag
         if (listingsQuery.empty) {
             listingsContainer.innerHTML = "<p class='text-center'>You haven't posted any listings yet.</p>";
             return;
         }
 
+        // Loop through each listing and display it
         listingsQuery.forEach((doc) => {
             const listing = doc.data();
             const listingId = doc.id;
 
+            // Create listing card
             const listingElement = document.createElement("div");
             listingElement.classList.add("col");
             listingElement.id = `listing-${listingId}`;
@@ -59,7 +68,7 @@ async function displayMyListings() {
                 </div>
             </div>
         `;
-
+            // Append to container
             listingsContainer.appendChild(listingElement);
 
             // Attach event listener to delete button
@@ -73,12 +82,20 @@ async function displayMyListings() {
     }
 }
 
+/**
+ * Deletes a listing from Firestore and removes it from the DOM.
+ * @param {string} listingId - The ID of the listing document to delete
+ * @param {string} listingTitle - The title of the listing (for confirmation message)
+ * @returns {Promise<void>}
+ */
 async function deleteListing(listingId, listingTitle) {
     const confirmation = confirm(`Are you sure you want to delete "${listingTitle}"?`);
     if (!confirmation) return;
 
     try {
+        // Delete from Firestore
         await db.collection("listings").doc(listingId).delete();
+        // Remove element from DOM
         document.getElementById(`listing-${listingId}`).remove();
         console.log(`Listing "${listingTitle}" deleted successfully`);
     } catch (error) {
@@ -86,7 +103,10 @@ async function deleteListing(listingId, listingTitle) {
     }
 }
 
-// Run function when user is authenticated
+/**
+ * Triggers listing display when user authentication is confirmed.
+ * @param {firebase.User|null} user - The currently signed-in user
+ */
 auth.onAuthStateChanged((user) => {
     if (user) {
         displayMyListings();
