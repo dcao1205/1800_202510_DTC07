@@ -29,12 +29,17 @@
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
+    <!-- Main container for user profile -->
     <div class="container mt-4">
         <h2 class="text-center">Personal Profile</h2>
+
+        <!-- Profile Card -->
         <div class="card p-4 position-relative">
+            <!-- Edit button in the top-right corner -->
             <button onclick="window.location.href='editPersonalInfo.html'"
                 class="btn btn-outline-secondary btn-sm position-absolute" style="top: 10px; right: 10px;"
                 title="Edit Profile">
+                <!-- Pencil Icon (SVG) -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
@@ -43,10 +48,12 @@
                     <path d="M13.5 6.5l4 4" />
                 </svg>
             </button>
+            <!-- Profile Image -->
             <div class="text-center mb-3">
                 <img id="profileImage" src="" class="rounded-circle border border-secondary p-1" width="120"
                     height="120" style="background-color: #f0f0f0;">
             </div>
+            <!-- Profile Details List -->
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Username:</strong> <span id="username"></span></li>
                 <li class="list-group-item"><strong>Name:</strong> <span id="name"></span></li>
@@ -57,12 +64,16 @@
                 <li class="list-group-item"><strong>About Me:</strong> <span id="aboutme"></span></li>
             </ul>
         </div>
+
+        <!-- My Listings Section Toggle Button -->
         <p class="d-grid gap-2 col-6 mx-auto mt-4">
             <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#My-listings" type="button"
                 aria-expanded="false" aria-controls="My-listings">
                 My listings
             </button>
         </p>
+
+        <!-- Collapsible My Listings Section -->
         <div class="collapse" id="My-listings">
             <div class="container my-5">
                 <div id="my-listings-container" class="row row-cols-1 row-cols-sm-2 g-4 px-3">
@@ -70,12 +81,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Saved Listings Section Toggle Button -->
         <p class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#Saved-listings" type="button"
                 aria-expanded="false" aria-controls="Saved-listings">
                 Saved listings
             </button>
         </p>
+
+        <!-- Collapsible Saved Listings Section -->
         <div class="collapse" id="Saved-listings">
             <div class="container my-5">
                 <div id="saved-listings-container" class="row row-cols-1 row-cols-sm-2 g-4 px-3">
@@ -84,8 +99,10 @@
             </div>
         </div>
     </div>
+    <!-- Footer container -->
     <div id="footer-container"></div>
 
+    <!-- JavaScript Modules -->
     <script type="module" src="./scripts/footer.js"></script>
     <script type="module" src="./scripts/fbSignin.js"></script>
     <script type="module" src="./scripts/storePersonalInfo.js"></script>
