@@ -79,8 +79,8 @@ project-name/
 │   ├── getSavedListings.js
 │   ├── homePage.js
 │   ├── loadLatestListings.js
-│   ├── load_user_info.js
-│   ├── logged_in_header.js
+│   ├── loadUserInfo.js
+│   ├── loggedInHeader.js
 │   ├── logged_out_footer.js
 │   ├── logged_out_header.js
 │   ├── other_user_info.js
