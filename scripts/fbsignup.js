@@ -1,5 +1,9 @@
 import { auth } from './firebase_cred.js';
 
+/**
+ * Handles user signup form submission and validates input before registration.
+ * @param {Event} e - The form submission event
+ */
 document.getElementById('signupForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -9,6 +13,7 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
     const termsAccepted = document.getElementById('termsCheck').checked;
     const statusMessage = document.getElementById('statusMessage');
 
+    // Check if passwords match
     if (password !== confirmPassword) {
         statusMessage.className = "alert alert-danger mt-3";
         statusMessage.textContent = "Passwords do not match.";
@@ -16,13 +21,14 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
         return;
     }
 
+    // Check password length
     if (password.length < 6) {
         statusMessage.className = "alert alert-danger mt-3";
         statusMessage.textContent = "Password must be at least 6 characters long.";
         statusMessage.style.display = "block";
         return;
     }
-
+    // Ensure terms are accepted
     if (!termsAccepted) {
         statusMessage.className = "alert alert-danger mt-3";
         statusMessage.textContent = "You must accept the terms and conditions.";
@@ -45,6 +51,7 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
             }, 2000);
         })
         .catch((error) => {
+            // Display error message
             statusMessage.className = "alert alert-danger mt-3";
             statusMessage.textContent = error.message;
             statusMessage.style.display = "block";
@@ -52,7 +59,10 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
         });
 });
 
-
+/**
+ * Redirects user to personal info page if already signed in.
+ * @param {firebase.User|null} user - The currently signed-in user or null
+ */
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("User already signed in:", user);
