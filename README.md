@@ -46,63 +46,74 @@ Example:
 
 ## Project Structure
 
-Example:
 ```
-project-name/
-├── 404.html
-├── createListing.html
-├── createMessage.html
-├── editPersonalInfo.html
+TextLibre/
+├── README.md
+├── .gitignore
 ├── firebase.json
 ├── firestore.indexes.json
 ├── firestore.rules
-├── homePage.html
-├── index.html
-├── listing_page.html
-├── listings.html
-├── myListings.html
-├── README.md
-├── replyMessage.html
-├── saveListings.html
-├── scripts/
-│   ├── createMessage.js
-│   ├── sendMessage.js
-│   ├── fbSignin.js
-│   ├── fbSignup.js
-│   ├── firebase_cred.js
-│   ├── footer.js
-│   ├── getListingDetails.js
-│   ├── getListing.js
-│   ├── getMyListings.js
-│   ├── getSavedListings.js
-│   ├── homePage.js
-│   ├── loadLatestListings.js
-│   ├── loadUserInfo.js
-│   ├── loggedInHeader.js
-│   ├── loggedOutFooter.js
-│   ├── loggedOutHeader.js
-│   ├── profileHeader.js
-│   ├── reply.js
-│   ├── reports.js
-│   ├── saveListing.js
-│   ├── storeListing.js
-│   ├── storePersonalInfo.js
-│   ├── userHeader.js
-│   ├── viewMessages.js
-│   └── viewSentMessages.js
-├── unused/
-│   └── otherUserInfo.js
-│   └── otherUserInfo.html
-│   └── userPageTemplate.html
-│   └── indexFormer.html
-├── signin.html
-├── signup.html
 ├── storage.rules
-├── styles/
-├── templates/
-├── userInfoPage.html
-├── viewMessage.html
-└── viewSentMessages.html
+├── src/
+│   ├── 404.html
+│   ├── createListing.html
+│   ├── createMessage.html
+│   ├── editPersonalInfo.html
+│   ├── homePage.html
+│   ├── index.html
+│   ├── listing_page.html
+│   ├── listings.html
+│   ├── myListings.html
+│   ├── replyMessage.html
+│   ├── saveListings.html
+│   ├── signin.html
+│   ├── signup.html
+│   ├── userInfoPage.html
+│   ├── viewMessage.html
+│   ├── viewSentMessages.html
+│   ├── scripts/
+│   │   ├── createMessage.js
+│   │   ├── sendMessage.js
+│   │   ├── fbSignin.js
+│   │   ├── fbSignup.js
+│   │   ├── firebase_cred.js
+│   │   ├── footer.js
+│   │   ├── getListingDetails.js
+│   │   ├── getListing.js
+│   │   ├── getMyListings.js
+│   │   ├── getSavedListings.js
+│   │   ├── homePage.js
+│   │   ├── loadLatestListings.js
+│   │   ├── loadUserInfo.js
+│   │   ├── loggedInHeader.js
+│   │   ├── loggedOutFooter.js
+│   │   ├── loggedOutHeader.js
+│   │   ├── profileHeader.js
+│   │   ├── reply.js
+│   │   ├── reports.js
+│   │   ├── saveListing.js
+│   │   ├── storeListing.js
+│   │   ├── storePersonalInfo.js
+│   │   ├── userHeader.js
+│   │   ├── viewMessages.js
+│   │   └── viewSentMessages.js
+│   ├── styles/
+│       ├── homepage.css
+│       ├── listings.css
+│       └── style.css
+│   ├── templates/
+│       ├── footer.html
+│       ├── loggedOutFooter.html
+│       ├── loggedOutHeader.html
+│       ├── loggedInFooter.html
+│       ├── loggedInHeader.html
+│       └── userHeader.html
+│   └── unused/
+│       ├── otherUserInfo.js
+│       ├── otherUserInfo.html
+│       ├── userPageTemplate.html
+│       └── indexFormer.html
+
 ```
 
 ---
@@ -117,9 +128,7 @@ project-name/
 ## Acknowledgments
 
 Example:
-- Weather data sourced from [OpenWeatherMap](https://openweathermap.org/).
-- Code snippets for ___ algoirthm were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+- Ui design done using [Bootstrap](https://getbootstrap.com).
 
 ---
 
@@ -135,6 +144,7 @@ Example:
 
 Example: 
 - Add support for editing listings
+- Allow users to search for more than just book name
 - Add the ability to leave reviews on a seller's page
 - Read indicators on messages
 - Allow more school supplies than just textbooks to be sold on the site
