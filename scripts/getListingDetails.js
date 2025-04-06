@@ -1,26 +1,25 @@
 import { auth, db } from './firebase_cred.js';
 
 /**
- * Retrieves the listing ID from the current URL query string.
- * @returns {string|null} The listing ID if present, otherwise null.
+ * Extracts the listing ID from the URL query parameters
+ * @returns {string|null} The listing ID if found in URL, otherwise null
  */
-// Function to get query parameters from URL
 function getListingIdFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get("id"); // Retrieves ?id=listingID from the URL
+    // Return the value of the 'id' parameter
+    return params.get("id"); 
 }
 
 /**
- * Fetches the listing data from Firestore and displays it on the page.
- * Displays error messages if the listing ID is missing or not found.
+ * Fetches and displays a single listing based on ID from URL
+ * @async
  * @returns {Promise<void>}
  */
-// Function to fetch and display the listing
 async function displayListing() {
     // Get the listing ID from URL
     const listingId = getListingIdFromURL();
 
-    // If no ID found, show error message on the page
+    // Check if listing ID exists
     if (!listingId) {
         console.error("No listing ID found in URL.");
         document.getElementById("selected-listing").innerHTML = "<p>Listing not found.</p>";
@@ -28,21 +27,21 @@ async function displayListing() {
     }
 
     try {
-        // Reference the Firestore document for the given listing ID
+        // Create reference to the specific listing document
         const docRef = db.collection("listings").doc(listingId);
         const docSnap = await docRef.get();
 
-        // If listing doesn't exist in database
+        // Check if document exists
         if (!docSnap.exists) {
             console.error("Listing does not exist.");
             document.getElementById("selected-listing").innerHTML = "<p>Listing not found.</p>";
             return;
         }
 
-        // Extract data from document
+        // Get the listing data from the document
         const listing = docSnap.data();
 
-        // Populate HTML elements with listing data
+        // Update DOM elements with listing data
         document.getElementById("listing-title").innerText = listing.title || "No Title";
         document.getElementById("listing-author").innerText = `Author: ${listing.author || "Unknown"}`;
         document.getElementById("listing-price").innerText = `Price: $${listing.price || "N/A"}`;
@@ -54,14 +53,11 @@ async function displayListing() {
         document.querySelector('.card-img-top').src = listing.imageUrl;
 
     } catch (error) {
-        // Handle and display error on the page
+        // Handle any errors that occur during the process
         console.error("Error fetching listing:", error);
         document.getElementById("selected-listing").innerHTML = "<p>Error loading listing.</p>";
     }
 }
 
-/**
- * Executes listing display logic once the DOM is fully loaded.
- */
-// Run the function when the page loads
+// Execute the displayListing function when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", displayListing);
