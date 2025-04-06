@@ -124,6 +124,19 @@ function displayCardsDynamically(collection, searchText) {
 // Event listener for filter application button
 document.getElementById("applyFilters").addEventListener("click", () => {
     console.log("Filters applied");
+
+    // Close Bootstrap collapse sections if they are open
+    const filterSection = document.getElementById("filterSection");
+    const sortSection = document.getElementById("sortSection");
+
+    if (filterSection && filterSection.classList.contains("show")) {
+        new bootstrap.Collapse(filterSection, { toggle: false }).hide();
+    }
+
+    if (sortSection && sortSection.classList.contains("show")) {
+        new bootstrap.Collapse(sortSection, { toggle: false }).hide();
+    }
+
     displayCardsDynamically("listings", getQueryParameter("query"));
 });
 
