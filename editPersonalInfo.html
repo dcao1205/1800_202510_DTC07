@@ -30,6 +30,7 @@
 </head>
 
 <body>
+    <!-- Auth check and redirect to sign-in page if user is not authenticated -->
     <script type="module">
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js";
         import { auth } from './firebase_cred.js';
@@ -48,16 +49,20 @@
     <!-- Navbar -->
     <nav id="loggedin-header-container"></nav>
 
+    <!-- Main container for personal info update form -->
     <div class="container mt-4">
         <h2 class="text-center">Update personal information</h2>
 
+        <!-- Form to update user profile -->
         <form class="create">
+            <!-- Image upload preview -->
             <div class="mb-3 text-center">
                 <label for="imageUpload" class="image-upload" id="imagePreview">
                     <span>Upload Image</span>
                 </label>
                 <input type="file" id="imageUpload" accept="image/*" class="d-none">
             </div>
+            <!-- Required text fields -->
             <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
                 <input type="text" class="form-control" id="username" required>
@@ -66,6 +71,7 @@
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" required>
             </div>
+            <!-- Email visibility toggle and email input -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div class="form-check form-switch">
@@ -74,10 +80,12 @@
                 </div>
                 <input type="text" class="form-control" id="email" required>
             </div>
+            <!-- Phone number input -->
             <div class="mb-3">
                 <label for="phonenumber" class="form-label">Phone Number</label>
                 <input type="number" class="form-control" id="phonenumber" required>
             </div>
+            <!-- City selection dropdown -->
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
                 <select class="form-control" id="location">
@@ -99,10 +107,12 @@
                     <option>White Rock</option>
                 </select>
             </div>
+            <!-- School or institution input -->
             <div class="mb-3">
                 <label for="institution" class="form-label">Institution</label>
                 <input type="text" class="form-control" id="institution" required>
             </div>
+            <!-- Optional about me field -->
             <div class="mb-3">
                 <label for="aboutme" class="form-label">About me (Optional)</label>
                 <textarea class="form-control" id="aboutme" rows="3"></textarea>
@@ -110,6 +120,7 @@
             <button type="submit" class="btn btn-primary w-100 btn-submit">Update</button>
         </form>
     </div>
+    <!-- Script to preview uploaded profile image -->
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const file = event.target.files[0];
@@ -131,6 +142,7 @@
     <script type="module" src="./scripts/storePersonalInfo.js"></script>
     <script type="module" src="./scripts/loggedInHeader.js"></script>
 
+    <!-- Warn user before leaving the page if required fields are empty -->
     <script type="module">
         document.addEventListener("DOMContentLoaded", function () {
             const requiredFields = ["username", "name", "email", "phonenumber", "location", "institution"];
