@@ -2,5 +2,5 @@
 *.logs
 node_modules/
 .vscode/
-scripts/firebase_cred.js
+src/scripts/firebase_cred.js
 .firebase
