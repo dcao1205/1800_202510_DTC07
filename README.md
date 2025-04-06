@@ -77,7 +77,7 @@ project-name/
 │   ├── getListing.js
 │   ├── getMyListings.js
 │   ├── getSavedListings.js
-│   ├── homepagescript.js
+│   ├── homePage.js
 │   ├── load_latest_listings.js
 │   ├── load_user_info.js
 │   ├── logged_in_header.js
