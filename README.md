@@ -57,12 +57,10 @@ project-name/
 ├── firestore.indexes.json
 ├── firestore.rules
 ├── homePage.html
-├── indexFormer.html # MOVED
 ├── index.html
 ├── listing_page.html
 ├── listings.html
 ├── myListings.html
-├── otherUserInfo.html # MOVED
 ├── README.md
 ├── replyMessage.html
 ├── saveListings.html
@@ -83,7 +81,6 @@ project-name/
 │   ├── loggedInHeader.js
 │   ├── loggedOutFooter.js
 │   ├── loggedOutHeader.js
-│   ├── otherUserInfo.js #MOVED
 │   ├── profileHeader.js
 │   ├── reply.js
 │   ├── reports.js
@@ -93,13 +90,17 @@ project-name/
 │   ├── userHeader.js
 │   ├── viewMessages.js
 │   └── viewSentMessages.js
+├── unused/
+│   └── otherUserInfo.js
+│   └── otherUserInfo.html
+│   └── userPageTemplate.html
+│   └── indexFormer.html
 ├── signin.html
 ├── signup.html
 ├── storage.rules
 ├── styles/
 ├── templates/
 ├── userInfoPage.html
-├── userPageTemplate.html #Moved
 ├── viewMessage.html
 └── viewSentMessages.html
 ```
