@@ -1,6 +1,8 @@
 import { db } from './firebase_cred.js';
 
-// Populate the "To:" input
+/**
+ * On page load: populates the "To" field from localStorage and adds back button handler.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     // Get the stored seller username localStorage
     const sellerUsername = localStorage.getItem("selectedSellerUsername");
@@ -20,6 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+/**
+ * Handles sending a message when the form is submitted.
+ * Validates input, creates message object, stores it in Firestore,
+ * and updates both sender and recipient user records.
+ * @param {SubmitEvent} e - The form submission event
+ * @returns {Promise<void>}
+ */
 document.getElementById('message').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -39,17 +48,20 @@ document.getElementById('message').addEventListener('submit', async function (e)
     if (toSeller && subject && messageText) {
 
         try {
+            // Retrieve sender's username
             const userDoc = await db.collection("users").doc(user.uid).get();
             const userData = userDoc.data();
             const username = userData.username;
             console.log("Username:", username);
 
+            // Confirm before sending
             const confirmUpdate = confirm("Are you sure you want to send the message?");
             if (!confirmUpdate) {
                 console.log("User cancelled the update.");
                 return;
             }
 
+            // Construct message object
             const message = {
                 to: toSeller,
                 subject: subject,

@@ -1,4 +1,7 @@
-// Retrieves stored values from localStorage and populates the reply input
+/**
+ * Retrieves stored values from localStorage and populates reply fields on page load.
+ * Also handles "Back" button to return to message view.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     // Get the stored username and subject from localStorage
     const recipient = localStorage.getItem("selectedMessageUsername");
