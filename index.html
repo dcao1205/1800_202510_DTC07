@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
+    <title>TextLibre - Student Textbook Marketplace</title>
+    <meta name="description" content="A student-first platform for buying and selling textbooks">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,29 +11,38 @@
 
     <!-- Bootstrap Library CSS CDN go here -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Boostrap Library JS CDN  go here -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Other libraries go here -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
         rel="stylesheet">
+
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
 
+    </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
-    <nav id="loggedout-header-container"></nav>
+    <div id="loggedout-header-container" class="sticky-top"></div>
 
-    <!-- welcome banner&call to action -->
+    <!-- welcome banner & call to action -->
     <main class="flex-grow-1 d-flex flex-column justify-content-center">
-        <div class="px-4 text-center border-bottom flex flex-col">
-            <h1 class="display-4 fw-bold text-[50px] px-10 py-3">Welcome to TextLibre</h1>
+        <div class="px-4 py-5 text-center">
+            <h1 class="display-4 fw-bold">Welcome to TextLibre</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead">We're building a student-first platform designed to make buying and selling
+                <p class="lead mb-4">We're building a student-first platform designed to make buying and selling
                     second-hand textbooks easier, smarter, and
                     more seamless than ever. With a modern and simple user interface, we ensure that finding affordable
                     books or selling
@@ -41,14 +50,12 @@
 
                     Join us in creating a better way for students to connect, save money, and make the most of their
                     textbooks!</p>
-                <div class="d-flex justify-content-center mb-5">
-                    <a href="signup.html">
-                        <button type="button" id="signup" class="btn btn-outline-secondary btn-lg mx-3"
-                            fdprocessedid="">Signup</button>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="signup.html" class="text-decoration-none">
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-sm-3">Signup</button>
                     </a>
-                    <a href="signin.html">
-                        <button type="button" id="login" class="btn btn-outline-secondary btn-lg"
-                            fdprocessedid="itmq9n">Login</button>
+                    <a href="signin.html" class="text-decoration-none">
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
                     </a>
                 </div>
             </div>
@@ -56,11 +63,14 @@
     </main>
 
     <!-- Footer -->
-    <div id="loggedout-footer-container"></div>
+    <div id="loggedout-footer-container" class="mt-auto"></div>
 
+    <!-- Boostrap Library JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your scripts -->
     <script src="./scripts/loggedOutHeader.js"></script>
     <script src="./scripts/loggedOutFooter.js"></script>
-
 </body>
 
 </html>
