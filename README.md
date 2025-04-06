@@ -74,7 +74,7 @@ project-name/
 │   ├── firebase_cred.js
 │   ├── footer.js
 │   ├── getListingDetails.js
-│   ├── get_listing.js
+│   ├── getListing.js
 │   ├── get_my_listings.js
 │   ├── get_saved_listings.js
 │   ├── homepagescript.js
