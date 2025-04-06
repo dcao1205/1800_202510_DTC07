@@ -1,11 +1,17 @@
 import { db, storage } from './firebase_cred.js';
 
-// Wait for the DOM to be fully loaded before executing the script
+/**
+ * Handles listing creation with optional image upload, form validation, 
+ * and Firestore document creation. Waits for DOM to load before binding events.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     // Variable to store the selected image file
     let imageFile = null;
 
-    // Event listener for image upload input
+    /**
+     * Handles image selection and preview display.
+     * @param {Event} event - The file input change event.
+     */
     document.getElementById('imageUpload').addEventListener('change', function (event) {
         // Get the first selected file
         imageFile = event.target.files[0];
@@ -27,7 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Check if the form exists
     if (form) {
-        // Add submit event listener to the form
+        /**
+         * Handles listing form submission: validates input, uploads image, stores listing.
+         * @param {Event} event - The form submission event.
+         */
         form.addEventListener('submit', async function (event) {
             // Prevent the default form submission behavior
             event.preventDefault();
