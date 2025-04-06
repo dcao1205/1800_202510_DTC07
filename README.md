@@ -67,8 +67,8 @@ project-name/
 ├── reply_message.html
 ├── save_listings.html
 ├── scripts/
-│   ├── create_message.js
-│   ├── fb_send_message.js
+│   ├── createMessage.js
+│   ├── sendMessage.js
 │   ├── fbsignin.js
 │   ├── fbsignup.js
 │   ├── firebase_cred.js
