@@ -73,7 +73,7 @@ project-name/
 │   ├── fbSignup.js
 │   ├── firebase_cred.js
 │   ├── footer.js
-│   ├── get_listing_details.js
+│   ├── getListingDetails.js
 │   ├── get_listing.js
 │   ├── get_my_listings.js
 │   ├── get_saved_listings.js
