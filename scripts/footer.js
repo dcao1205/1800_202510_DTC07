@@ -1,3 +1,6 @@
+/**
+ * Inserts the footer HTML and attaches footer button event listeners after DOM is loaded.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const footer = document.getElementById('footer-container');
 
@@ -72,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
     attachFooterEventListeners()
 });
 
+/**
+ * Attaches event listener to the notification bell (if available).
+ */
 function attachFooterEventListeners() {
     // Notification bell handler
     document.getElementById("btn-bell").addEventListener("click", function () {
