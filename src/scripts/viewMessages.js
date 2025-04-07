@@ -26,7 +26,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.querySelector('.btn-delete').addEventListener('click', deleteButton);
 });
 
-// AI help to create pop up modal container using Bootstrap
+/**
+ * Creates and appends a Bootstrap modal to the DOM to show message details.
+ * Also sets up the reply button event that stores message data into localStorage.
+ */
 function createMessageModal() {
     // Create the modal HTML
     const modalHTML = `
@@ -80,6 +83,12 @@ function createMessageModal() {
     });
 }
 
+/**
+ * Populates the current user's information by fetching their Firestore document.
+ * Then loads the user's received messages.
+ * 
+ * @param {Object} user - The currently authenticated Firebase user.
+ */
 async function populateUserInfo(user) {
     try {
         // Get user document from Firestore
@@ -101,6 +110,11 @@ async function populateUserInfo(user) {
     }
 }
 
+/**
+ * Loads all received messages of the user from Firestore and prepares them for display.
+ * 
+ * @param {Object} userData - The user document data retrieved from Firestore.
+ */
 async function loadMessages(userData) {
     try {
         // Retrieve current user messages
@@ -130,6 +144,11 @@ async function loadMessages(userData) {
     }
 }
 
+/**
+ * Renders each message in the UI, formatted differently based on read/unread status.
+ * 
+ * @param {Array} messages - Array of message objects to display.
+ */
 function displayMessages(messages) {
     // HTML container for received messages
     const messagesContainer = document.getElementById('receivedMessages');
@@ -200,6 +219,10 @@ function displayMessages(messages) {
     openButtonEventListeners();
 }
 
+/**
+ * Adds click event listeners to all "Open" buttons, which trigger a modal view of message details,
+ * marks message as read in Firestore, and updates its UI appearance.
+ */
 function openButtonEventListeners() {
     const openButtons = document.querySelectorAll('.open-btn'); // Select all "Open" buttons
 
@@ -245,7 +268,10 @@ function openButtonEventListeners() {
     });
 }
 
-// Main function to handle message deletion
+/**
+ * Handles the deletion of selected messages, updates Firestore,
+ * and removes messages from the user interface.
+ */
 async function deleteButton() {
     const checkedInputs = document.querySelectorAll('input[type="checkbox"]:checked');
 
@@ -285,7 +311,11 @@ async function deleteButton() {
     }
 }
 
-// Get the current authenticated user
+/**
+ * Returns the currently authenticated user from Firebase.
+ * 
+ * @returns {Object|null} - Firebase user object or null if not logged in.
+ */
 async function getCurrentUser() {
     const user = auth.currentUser;
     if (!user) {
@@ -295,7 +325,12 @@ async function getCurrentUser() {
     return user;
 }
 
-// Get the user document data from Firestore
+/**
+ * Fetches Firestore user document data based on the user's UID.
+ * 
+ * @param {string} userId - The Firebase user UID.
+ * @returns {Object|null} - The user's Firestore document data or null if not found.
+ */
 async function getUserData(userId) {
     const userDocRef = db.collection("users").doc(userId);
     const userDoc = await userDocRef.get();
@@ -308,7 +343,15 @@ async function getUserData(userId) {
     return userDoc.data();
 }
 
-// Update the user's message list (either sent or received)
+
+/**
+ * Updates the message list (sent or received) of the current user after deletions.
+ * 
+ * @param {string} userId - Firebase user ID.
+ * @param {Object} userData - Current user document data.
+ * @param {Array} messageIdsToDelete - Array of message IDs selected for deletion.
+ * @returns {boolean} - True if update was successful.
+ */
 async function updateUserMessageList(userId, userData, messageIdsToDelete) {
     // Determine if we're on the sent or received messages page
     const isSentPage = document.getElementById('sentMessages') !== null;
@@ -333,7 +376,14 @@ async function updateUserMessageList(userId, userData, messageIdsToDelete) {
     return true;
 }
 
-// Check if messages are still referenced and delete if appropriate
+
+/**
+ * Checks whether each message is still referenced by another user.
+ * If not, deletes the message from Firestore.
+ * 
+ * @param {Array} messageIdsToDelete - List of message IDs selected for deletion.
+ * @param {Object} userData - Current user data to determine sent/received mode.
+ */
 async function checkAndDeleteMessages(messageIdsToDelete, userData) {
     const isSentPage = document.getElementById('sentMessages') !== null;
 
@@ -363,7 +413,12 @@ async function checkAndDeleteMessages(messageIdsToDelete, userData) {
     }
 }
 
-// Get message information from Firestore
+/**
+ * Retrieves a message document from Firestore using the message ID.
+ * 
+ * @param {string} messageId - The Firestore document ID of the message.
+ * @returns {Object|null} - Message document data or null if not found.
+ */
 async function getMessageInfo(messageId) {
     const messageDoc = await db.collection("messages").doc(messageId).get();
 
@@ -375,7 +430,14 @@ async function getMessageInfo(messageId) {
     return messageDoc.data();
 }
 
-// Check if a message is still referenced by another user
+/**
+ * Checks if a message still exists in the other user's sent/received list.
+ * 
+ * @param {string} messageId - The ID of the message to check.
+ * @param {string} otherUserId - ID of the other user.
+ * @param {string} messageField - Field name to check in the other user's document.
+ * @returns {boolean} - True if the message is still referenced.
+ */
 async function messageExists(messageId, otherUserId, messageField) {
     try {
         const otherUserDoc = await db.collection("users").doc(otherUserId).get();
@@ -395,13 +457,21 @@ async function messageExists(messageId, otherUserId, messageField) {
     }
 }
 
-// Delete a message from Firestore
+/**
+ * Deletes a message document from Firestore using its ID.
+ * 
+ * @param {string} messageId - Firestore document ID of the message.
+ */
 async function deleteMessage(messageId) {
     await db.collection("messages").doc(messageId).delete();
     console.log(`Message ${messageId} deleted from Firebase`);
 }
 
-// Remove message elements from the UI
+/**
+ * Removes message elements from the DOM based on their message IDs.
+ * 
+ * @param {Array} messageIdsToDelete - List of message IDs to remove from UI.
+ */
 function removeMessagesFromUI(messageIdsToDelete) {
     messageIdsToDelete.forEach(messageId => {
         const messageElement = document.getElementById(messageId).closest('.message');
